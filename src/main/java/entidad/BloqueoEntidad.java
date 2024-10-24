@@ -5,22 +5,49 @@
 package entidad;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Beto_
  */
 @Entity
+@Table(name = "tblBloqueo")
 public class BloqueoEntidad implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "motivo", nullable = false, length = 50)
+    private String motivo;
+    
+    @Column(name = "fecha", columnDefinition = "TIME")
+    private LocalDate fecha;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_estudiante")
+    private EstudianteEntidad estudiante;
+
+    public BloqueoEntidad() {
+    }
+    
+    public BloqueoEntidad(String motivo) {
+        this.motivo = motivo;
+        this.fecha = LocalDate.now();
+    }
+
+    public BloqueoEntidad(String motivo, LocalDate fecha) {
+        this.motivo = motivo;
+        this.fecha = fecha;
+    }
 
     public Long getId() {
         return id;
@@ -30,29 +57,32 @@ public class BloqueoEntidad implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public String getMotivo() {
+        return motivo;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BloqueoEntidad)) {
-            return false;
-        }
-        BloqueoEntidad other = (BloqueoEntidad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public EstudianteEntidad getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteEntidad estudiante) {
+        this.estudiante = estudiante;
     }
 
     @Override
     public String toString() {
-        return "entidad.BloqueoEntidad[ id=" + id + " ]";
+        return "BloqueoEntidad{" + "id=" + id + ", motivo=" + motivo + ", fecha=" + fecha + ", estudiante=" + estudiante + '}';
     }
-    
 }

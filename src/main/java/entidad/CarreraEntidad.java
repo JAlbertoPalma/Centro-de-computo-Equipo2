@@ -5,22 +5,41 @@
 package entidad;
 
 import java.io.Serializable;
+import java.time.LocalTime;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Beto_
  */
 @Entity
+@Table(name = "tblCarrera")
 public class CarreraEntidad implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "nombre", nullable = false, length = 50)
+    private String nombre;
+    
+    @Column(name = "tiempoLimite", columnDefinition = "TIME")
+    private LocalTime tiempoLimite;
+    
+    @OneToMany(mappedBy = "carrera", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<EstudianteEntidad> estudiante;
+
+    public CarreraEntidad(String nombre, LocalTime tiempoLimite) {
+        this.nombre = nombre;
+        this.tiempoLimite = tiempoLimite;
+    }
 
     public Long getId() {
         return id;
@@ -30,29 +49,32 @@ public class CarreraEntidad implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public String getNombre() {
+        return nombre;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CarreraEntidad)) {
-            return false;
-        }
-        CarreraEntidad other = (CarreraEntidad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public LocalTime getTiempoLimite() {
+        return tiempoLimite;
+    }
+
+    public void setTiempoLimite(LocalTime tiempoLimite) {
+        this.tiempoLimite = tiempoLimite;
+    }
+
+    public List<EstudianteEntidad> getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(List<EstudianteEntidad> estudiante) {
+        this.estudiante = estudiante;
     }
 
     @Override
     public String toString() {
-        return "entidad.CarreraEntidad[ id=" + id + " ]";
+        return "CarreraEntidad{" + "id=" + id + ", nombre=" + nombre + ", tiempoLimite=" + tiempoLimite + ", estudiante=" + estudiante + '}';
     }
-    
 }

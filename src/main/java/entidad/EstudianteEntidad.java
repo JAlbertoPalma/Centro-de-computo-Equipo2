@@ -5,22 +5,70 @@
 package entidad;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Beto_
  */
 @Entity
+@Table(name = "tblEstudiante")
 public class EstudianteEntidad implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "nombres", nullable = false, length = 50)
+    private String nombres;
+    
+    @Column(name = "apellidoPaterno", nullable = false, length = 50)
+    private String apellidoPaterno;
+    
+    @Column(name = "apellidoMaterno", nullable = false, length = 50)
+    private String apellidoMaterno;
+    
+    @Column(name = "contrasena", nullable = false, length = 50)
+    private String contrasena;
+    
+    @Column(name = "estaInscrito", nullable = false)
+    private boolean estaInscrito;
+    
+    @Column(name = "estaBloqueado", nullable = false)
+    private boolean estaBloqueado;
+    
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ComputadoraEntidad> computadoras;
+    
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<BloqueoEntidad> bloqueos;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_Carrera")
+    private CarreraEntidad carrera;
+
+    public EstudianteEntidad() {
+        this.estaInscrito = true;
+        this.estaBloqueado = false;
+    }
+
+    public EstudianteEntidad(String nombres, String apellidoPaterno, String apellidoMaterno, String contrasena) {
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.contrasena = contrasena;
+        this.estaInscrito = true;
+        this.estaBloqueado = false;
+    }
 
     public Long getId() {
         return id;
@@ -30,29 +78,80 @@ public class EstudianteEntidad implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public String getNombres() {
+        return nombres;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EstudianteEntidad)) {
-            return false;
-        }
-        EstudianteEntidad other = (EstudianteEntidad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public boolean isEstaInscrito() {
+        return estaInscrito;
+    }
+
+    public void setEstaInscrito(boolean estaInscrito) {
+        this.estaInscrito = estaInscrito;
+    }
+
+    public boolean isEstaBloqueado() {
+        return estaBloqueado;
+    }
+
+    public void setEstaBloqueado(boolean estaBloqueado) {
+        this.estaBloqueado = estaBloqueado;
+    }
+
+    public List<ComputadoraEntidad> getComputadoras() {
+        return computadoras;
+    }
+
+    public void setComputadoras(List<ComputadoraEntidad> computadoras) {
+        this.computadoras = computadoras;
+    }
+
+    public List<BloqueoEntidad> getBloqueos() {
+        return bloqueos;
+    }
+
+    public void setBloqueos(List<BloqueoEntidad> bloqueos) {
+        this.bloqueos = bloqueos;
+    }
+
+    public CarreraEntidad getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(CarreraEntidad carrera) {
+        this.carrera = carrera;
     }
 
     @Override
     public String toString() {
-        return "entidad.EstudianteEntidad[ id=" + id + " ]";
+        return "EstudianteEntidad{" + "id=" + id + ", nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", contrasena=" + contrasena + ", estaInscrito=" + estaInscrito + ", estaBloqueado=" + estaBloqueado + ", computadoras=" + computadoras + ", bloqueos=" + bloqueos + ", carrera=" + carrera + '}';
     }
-    
 }
