@@ -11,6 +11,10 @@
     <class>entidad.CarreraEntidad</class>
     <class>entidad.BloqueoEntidad</class>
     <class>entidad.SoftwareInstaladoEntidad</class>
+    <class>entidad.EstudianteBloqueoEntidad</class>
+    <class>entidad.ApartadoEntidad</class>
+    <class>persistencia.CarreraDAO</class>
+    <class>persistencia.BloqueoDAO</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/computoBD?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

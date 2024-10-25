@@ -5,6 +5,7 @@
 package entidad;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import javax.persistence.Table;
  * @author Beto_
  */
 @Entity
-@Table(name = "tblEstudiante")
+@Table(name = "tblEstudiantes")
 public class EstudianteEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,11 +47,11 @@ public class EstudianteEntidad implements Serializable {
     @Column(name = "estaBloqueado", nullable = false)
     private boolean estaBloqueado;
     
-    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<ComputadoraEntidad> computadoras;
+    @OneToMany(mappedBy = "estudiante")
+    private List<ApartadoEntidad> computadoras = new ArrayList<>();
     
-    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<BloqueoEntidad> bloqueos;
+    @OneToMany(mappedBy = "estudiante")
+    private List<EstudianteBloqueoEntidad> bloqueos = new ArrayList<>();
     
     @ManyToOne
     @JoinColumn(name = "id_Carrera")
@@ -61,7 +62,7 @@ public class EstudianteEntidad implements Serializable {
         this.estaBloqueado = false;
     }
 
-    public EstudianteEntidad(String nombres, String apellidoPaterno, String apellidoMaterno, String contrasena) {
+    public EstudianteEntidad(String nombres, String apellidoPaterno, String apellidoMaterno, String contrasena, CarreraEntidad carrera) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -126,22 +127,22 @@ public class EstudianteEntidad implements Serializable {
         this.estaBloqueado = estaBloqueado;
     }
 
-    public List<ComputadoraEntidad> getComputadoras() {
+    public List<ApartadoEntidad> getComputadoras() {
         return computadoras;
     }
 
-    public void setComputadoras(List<ComputadoraEntidad> computadoras) {
+    public void setComputadoras(List<ApartadoEntidad> computadoras) {
         this.computadoras = computadoras;
     }
 
-    public List<BloqueoEntidad> getBloqueos() {
+    public List<EstudianteBloqueoEntidad> getBloqueos() {
         return bloqueos;
     }
 
-    public void setBloqueos(List<BloqueoEntidad> bloqueos) {
+    public void setBloqueos(List<EstudianteBloqueoEntidad> bloqueos) {
         this.bloqueos = bloqueos;
     }
-
+    
     public CarreraEntidad getCarrera() {
         return carrera;
     }

@@ -6,6 +6,7 @@ package entidad;
 
 import enums.TipoComputadora;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import javax.persistence.Table;
  * @author Beto_
  */
 @Entity
-@Table(name = "tblComputadora")
+@Table(name = "tblComputadoras")
 public class ComputadoraEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,9 +51,8 @@ public class ComputadoraEntidad implements Serializable {
     @JoinColumn(name = "id_LaboratorioComputo")
     private LaboratorioComputoEntidad laboratorioComputo;
     
-    @ManyToOne
-    @JoinColumn(name = "id_Estudiante")
-    private EstudianteEntidad estudiante;
+    @OneToMany(mappedBy = "computadora")
+    private List<ApartadoEntidad> estudiantes = new ArrayList<>();
     
     @OneToMany(mappedBy = "computadora", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<SoftwareInstaladoEntidad> softwaresInstalados;
@@ -61,12 +61,13 @@ public class ComputadoraEntidad implements Serializable {
         this.estatus = "Disponible";
     }
 
-    public ComputadoraEntidad(String contrasenaMaestra, String direccionIP, int noMaquina, TipoComputadora tipo) {
+    public ComputadoraEntidad(String contrasenaMaestra, String direccionIP, int noMaquina, TipoComputadora tipo, LaboratorioComputoEntidad laboratorioComputo) {
         this.contrasenaMaestra = contrasenaMaestra;
         this.direccionIP = direccionIP;
         this.noMaquina = noMaquina;
         this.tipo = tipo;
         this.estatus = "Disponible";
+        this.laboratorioComputo = laboratorioComputo;
     }
 
     public Long getId() {
@@ -125,14 +126,13 @@ public class ComputadoraEntidad implements Serializable {
         this.laboratorioComputo = laboratorioComputo;
     }
 
-    public EstudianteEntidad getEstudiante() {
-        return estudiante;
+    public List<ApartadoEntidad> getEstudiantes() {
+        return estudiantes;
     }
 
-    public void setEstudiante(EstudianteEntidad estudiante) {
-        this.estudiante = estudiante;
+    public void setEstudiantes(List<ApartadoEntidad> estudiantes) {
+        this.estudiantes = estudiantes;
     }
-
     public List<SoftwareInstaladoEntidad> getSoftwaresInstalados() {
         return softwaresInstalados;
     }
@@ -143,6 +143,6 @@ public class ComputadoraEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "ComputadoraEntidad{" + "id=" + id + ", contrasenaMaestra=" + contrasenaMaestra + ", estatus=" + estatus + ", direccionIP=" + direccionIP + ", noMaquina=" + noMaquina + ", tipo=" + tipo + ", laboratorioComputo=" + laboratorioComputo + ", estudiante=" + estudiante + ", softwaresInstalados=" + softwaresInstalados + '}';
+        return "ComputadoraEntidad{" + "id=" + id + ", contrasenaMaestra=" + contrasenaMaestra + ", estatus=" + estatus + ", direccionIP=" + direccionIP + ", noMaquina=" + noMaquina + ", tipo=" + tipo + ", laboratorioComputo=" + laboratorioComputo + ", estudiantes=" + estudiantes + ", softwaresInstalados=" + softwaresInstalados + '}';
     }
 }

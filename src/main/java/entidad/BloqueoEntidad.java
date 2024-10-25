@@ -6,13 +6,14 @@ package entidad;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +21,7 @@ import javax.persistence.Table;
  * @author Beto_
  */
 @Entity
-@Table(name = "tblBloqueo")
+@Table(name = "tblBloqueos")
 public class BloqueoEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,24 +30,26 @@ public class BloqueoEntidad implements Serializable {
     @Column(name = "motivo", nullable = false, length = 50)
     private String motivo;
     
-    @Column(name = "fecha", columnDefinition = "TIME")
-    private LocalDate fecha;
+    @Column(name = "fechaInicio", columnDefinition = "TIME")
+    private LocalDate fechaInicio;
     
-    @ManyToOne
-    @JoinColumn(name = "id_estudiante")
-    private EstudianteEntidad estudiante;
+    @Column(name = "fechaFin", columnDefinition = "TIME")
+    private LocalDate fechaFin;
+    
+    @OneToMany(mappedBy = "bloqueo")
+    private List<EstudianteBloqueoEntidad> estudiantes = new ArrayList<>();
 
     public BloqueoEntidad() {
     }
     
     public BloqueoEntidad(String motivo) {
         this.motivo = motivo;
-        this.fecha = LocalDate.now();
+        this.fechaInicio = LocalDate.now();
     }
 
     public BloqueoEntidad(String motivo, LocalDate fecha) {
         this.motivo = motivo;
-        this.fecha = fecha;
+        this.fechaInicio = fecha;
     }
 
     public Long getId() {
@@ -65,24 +68,32 @@ public class BloqueoEntidad implements Serializable {
         this.motivo = motivo;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+    
+    public LocalDate getFechaFin() {
+        return fechaFin;
     }
 
-    public EstudianteEntidad getEstudiante() {
-        return estudiante;
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
-    public void setEstudiante(EstudianteEntidad estudiante) {
-        this.estudiante = estudiante;
+    public List<EstudianteBloqueoEntidad> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(List<EstudianteBloqueoEntidad> estudiantes) {
+        this.estudiantes = estudiantes;
     }
 
     @Override
     public String toString() {
-        return "BloqueoEntidad{" + "id=" + id + ", motivo=" + motivo + ", fecha=" + fecha + ", estudiante=" + estudiante + '}';
+        return "BloqueoEntidad{" + "id=" + id + ", motivo=" + motivo + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estudiantes=" + estudiantes + '}';
     }
 }

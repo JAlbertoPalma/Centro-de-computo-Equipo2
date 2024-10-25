@@ -5,7 +5,6 @@
 package entidad;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,24 +18,21 @@ import javax.persistence.Table;
  * @author Beto_
  */
 @Entity
-@Table(name = "tblSoftwaresInstalados")
-public class SoftwareInstaladoEntidad implements Serializable {
+@Table(name = "tblApartados")
+public class ApartadoEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "nombre", nullable = false, length = 50)
-    private String nombre;
-    
     @ManyToOne
-    @JoinColumn(name = "id_Computadora")
+    @JoinColumn(name = "id_estudiante")
+    private EstudianteEntidad estudiante;
+
+    @ManyToOne
+    @JoinColumn(name = "id_computadora")
     private ComputadoraEntidad computadora;
 
-    public SoftwareInstaladoEntidad() {
-    }
-
-    public SoftwareInstaladoEntidad(String nombre) {
-        this.nombre = nombre;
+    public ApartadoEntidad() {
     }
 
     public Long getId() {
@@ -47,12 +43,12 @@ public class SoftwareInstaladoEntidad implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public EstudianteEntidad getEstudiante() {
+        return estudiante;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEstudiante(EstudianteEntidad estudiante) {
+        this.estudiante = estudiante;
     }
 
     public ComputadoraEntidad getComputadora() {
@@ -65,6 +61,6 @@ public class SoftwareInstaladoEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "SoftwareInstaladoEntidad{" + "id=" + id + ", nombre=" + nombre + ", computadora=" + computadora + '}';
+        return "ApartadoEntidad{" + "id=" + id + ", estudiante=" + estudiante + ", computadora=" + computadora + '}';
     }
 }

@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Beto_
  */
 @Entity
-@Table(name = "tblLaboratorioComputo")
+@Table(name = "tblLaboratoriosComputo")
 public class LaboratorioComputoEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @author Beto_
  */
 @Entity
-@Table(name = "tblUnidadAcademica")
+@Table(name = "tblUnidadesAcademicas")
 public class UnidadAcademicaEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +32,7 @@ public class UnidadAcademicaEntidad implements Serializable {
     @OneToMany(mappedBy = "unidadAcademica", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<LaboratorioComputoEntidad> laboratoriosComputo;
 
-    public UnidadAcademicaEntidad() {
-        
+    public UnidadAcademicaEntidad() {   
     }
 
     public UnidadAcademicaEntidad(String nombre) {
