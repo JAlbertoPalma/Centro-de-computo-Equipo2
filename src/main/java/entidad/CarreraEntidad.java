@@ -36,6 +36,9 @@ public class CarreraEntidad implements Serializable {
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<EstudianteEntidad> estudiante;
 
+    public CarreraEntidad() {
+    }
+
     public CarreraEntidad(String nombre, LocalTime tiempoLimite) {
         this.nombre = nombre;
         this.tiempoLimite = tiempoLimite;

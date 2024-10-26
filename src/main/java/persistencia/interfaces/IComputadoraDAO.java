@@ -18,6 +18,8 @@ public interface IComputadoraDAO {
     
     public void actualizar(Long id, ComputadoraDTO computadoraDTO) throws PersistenciaException;
     
+    public void actualizarEntidad(ComputadoraEntidad computadoraEntidad) throws PersistenciaException;
+    
     public void eliminar(Long id) throws PersistenciaException;
     
     public ComputadoraEntidad obtenerPorId(Long id) throws PersistenciaException;

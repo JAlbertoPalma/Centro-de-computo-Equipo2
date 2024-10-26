@@ -17,11 +17,15 @@ import persistencia.interfaces.ICarreraDAO;
  * @author Beto_
  */
 public class CarreraDAO implements ICarreraDAO{
-    @PersistenceContext
     private EntityManager entityManager;
+
+    public CarreraDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
     
     @Override
     public void guardar(CarreraDTO carreraDTO) throws PersistenciaException {
+        try{
         entityManager.getTransaction().begin();
         
         CarreraEntidad carrera = new CarreraEntidad(
@@ -29,7 +33,9 @@ public class CarreraDAO implements ICarreraDAO{
                 carreraDTO.getTiempoLimite());
         entityManager.persist(carrera);
         entityManager.getTransaction().commit();
-        entityManager.close();
+        }catch(Exception e){
+            throw new PersistenciaException("Error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -47,9 +53,8 @@ public class CarreraDAO implements ICarreraDAO{
 
             entityManager.merge(carreraBuscada);
             entityManager.getTransaction().commit();
-            entityManager.close();
             }catch(Exception e){
-            throw new PersistenciaException("Error: " + e.getMessage());
+                throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
 
@@ -59,13 +64,12 @@ public class CarreraDAO implements ICarreraDAO{
             //Se inicial la transacción
             entityManager.getTransaction().begin();
 
-            //Se busca la computadora a eliminar
+            //Se busca la carrera a eliminar
             CarreraEntidad carreraBuscada = obtenerPorId(id);
             
-            //Elimina el estudiante y termina la transacción
+            //Elimina la carrera y termina la transacción
             entityManager.remove(carreraBuscada);
             entityManager.getTransaction().commit();
-            entityManager.close();
         }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
         }
@@ -75,8 +79,8 @@ public class CarreraDAO implements ICarreraDAO{
     public CarreraEntidad obtenerPorId(Long id) throws PersistenciaException {
         CarreraEntidad carreraBuscada = entityManager.find(CarreraEntidad.class, id);
         if(carreraBuscada == null){
-                throw new PersistenciaException("No se encontró la carrera con este id");
-            }
+            throw new PersistenciaException("No se encontró la carrera con este id");
+        }
         return carreraBuscada;
     }
 

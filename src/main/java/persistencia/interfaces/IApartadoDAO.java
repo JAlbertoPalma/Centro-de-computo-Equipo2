@@ -4,10 +4,22 @@
  */
 package persistencia.interfaces;
 
+import entidad.ApartadoEntidad;
+import java.util.List;
+import persistencia.PersistenciaException;
+
 /**
  *
  * @author Beto_
  */
 public interface IApartadoDAO {
+    public void apartar(Long id_estudiante, Long id_computadora) throws PersistenciaException;
+
+    public void desapartar(Long id) throws PersistenciaException;
     
+    public void actualizarEntidad(ApartadoEntidad apartadoEntidad) throws PersistenciaException;
+    
+    public ApartadoEntidad obtenerPorId(Long id) throws PersistenciaException;
+    
+    public List<ApartadoEntidad> obtenerApartados() throws PersistenciaException;
 }

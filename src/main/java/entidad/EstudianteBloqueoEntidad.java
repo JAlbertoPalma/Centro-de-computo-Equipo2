@@ -5,6 +5,8 @@
 package entidad;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,12 @@ public class EstudianteBloqueoEntidad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(name = "fechaInicio", columnDefinition = "TIME")
+    private LocalDate fechaInicio;
+    
+    @Column(name = "fechaFin", columnDefinition = "TIME")
+    private LocalDate fechaFin;
+    
     @ManyToOne
     @JoinColumn(name = "id_estudiante")
     private EstudianteEntidad estudiante;
@@ -33,6 +41,7 @@ public class EstudianteBloqueoEntidad implements Serializable {
     private BloqueoEntidad bloqueo;
 
     public EstudianteBloqueoEntidad() {
+        this.fechaInicio = LocalDate.now();
     }
 
     public Long getId() {
@@ -41,6 +50,22 @@ public class EstudianteBloqueoEntidad implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public EstudianteEntidad getEstudiante() {
@@ -61,6 +86,6 @@ public class EstudianteBloqueoEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "EstudianteBloqueoEntidad{" + "id=" + id + ", estudiante=" + estudiante + ", bloqueo=" + bloqueo + '}';
+        return "EstudianteBloqueoEntidad{" + "id=" + id + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estudiante=" + estudiante + ", bloqueo=" + bloqueo + '}';
     }
 }

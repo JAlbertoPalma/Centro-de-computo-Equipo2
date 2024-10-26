@@ -18,6 +18,8 @@ public interface IEstudianteDAO {
     
     public void actualizar(Long id, EstudianteDTO estudianteDTO) throws PersistenciaException;
     
+    public void actualizarEntidad(EstudianteEntidad estudianteEntidad) throws PersistenciaException;
+    
     public void eliminar(Long id) throws PersistenciaException;
     
     public EstudianteEntidad obtenerPorId(Long id) throws PersistenciaException;

@@ -30,11 +30,6 @@ public class BloqueoEntidad implements Serializable {
     @Column(name = "motivo", nullable = false, length = 50)
     private String motivo;
     
-    @Column(name = "fechaInicio", columnDefinition = "TIME")
-    private LocalDate fechaInicio;
-    
-    @Column(name = "fechaFin", columnDefinition = "TIME")
-    private LocalDate fechaFin;
     
     @OneToMany(mappedBy = "bloqueo")
     private List<EstudianteBloqueoEntidad> estudiantes = new ArrayList<>();
@@ -44,12 +39,10 @@ public class BloqueoEntidad implements Serializable {
     
     public BloqueoEntidad(String motivo) {
         this.motivo = motivo;
-        this.fechaInicio = LocalDate.now();
     }
 
     public BloqueoEntidad(String motivo, LocalDate fecha) {
         this.motivo = motivo;
-        this.fechaInicio = fecha;
     }
 
     public Long getId() {
@@ -68,22 +61,6 @@ public class BloqueoEntidad implements Serializable {
         this.motivo = motivo;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-    
-    public LocalDate getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
     public List<EstudianteBloqueoEntidad> getEstudiantes() {
         return estudiantes;
     }
@@ -94,6 +71,6 @@ public class BloqueoEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "BloqueoEntidad{" + "id=" + id + ", motivo=" + motivo + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estudiantes=" + estudiantes + '}';
+        return "BloqueoEntidad{" + "id=" + id + ", motivo=" + motivo + ", estudiantes=" + estudiantes + '}';
     }
 }

@@ -12,19 +12,16 @@ import java.time.LocalDate;
  */
 public class BloqueoDTO {
     private String motivo;
-    private LocalDate fecha;
 
     public BloqueoDTO() {
     }
     
     public BloqueoDTO(String motivo) {
         this.motivo = motivo;
-        this.fecha = LocalDate.now();
     }
 
     public BloqueoDTO(String motivo, LocalDate fecha) {
         this.motivo = motivo;
-        this.fecha = fecha;
     }
     
     public String getMotivo() {
@@ -35,16 +32,8 @@ public class BloqueoDTO {
         this.motivo = motivo;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
     @Override
     public String toString() {
-        return "BloqueoDTO{" + "motivo=" + motivo + ", fecha=" + fecha + '}';
+        return "BloqueoDTO{" + "motivo=" + motivo + '}';
     }
 }

@@ -8,6 +8,7 @@ import dto.EstudianteDTO;
 import dto.LaboratorioComputoDTO;
 import entidad.EstudianteEntidad;
 import entidad.LaboratorioComputoEntidad;
+import entidad.UnidadAcademicaEntidad;
 import java.util.List;
 import persistencia.PersistenciaException;
 
@@ -16,9 +17,9 @@ import persistencia.PersistenciaException;
  * @author Beto_
  */
 public interface ILaboratorioComputoDAO {
-    public void guardar(LaboratorioComputoDTO laboratorioComputoDTO) throws PersistenciaException;
+    public void guardar(LaboratorioComputoDTO laboratorioComputoDTO, Long id_unidadAcademicaEntidad) throws PersistenciaException;
     
-    public void actualizar(Long id, LaboratorioComputoDTO laboratorioDTO) throws PersistenciaException;
+    public void actualizar(Long id, LaboratorioComputoDTO laboratorioComputoDTO) throws PersistenciaException;
     
     public void eliminar(Long id) throws PersistenciaException;
     

@@ -8,10 +8,12 @@ import dto.ComputadoraDTO;
 import dto.EstudianteDTO;
 import entidad.ComputadoraEntidad;
 import entidad.EstudianteEntidad;
+import entidad.LaboratorioComputoEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import persistencia.interfaces.IComputadoraDAO;
+import persistencia.interfaces.ILaboratorioComputoDAO;
 
 /**
  *
@@ -20,26 +22,35 @@ import persistencia.interfaces.IComputadoraDAO;
 public class ComputadoraDAO implements IComputadoraDAO{
     @PersistenceContext
     private EntityManager entityManager;
+    ILaboratorioComputoDAO laboratorioComputoDAO = new LaboratorioComputoDAO(entityManager);
+
+    public ComputadoraDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public void guardar(ComputadoraDTO computadoraDTO, Long id_laboratorioComputo) throws PersistenciaException {
         try{
             entityManager.getTransaction().begin();
+            
             //buscar laboratorio de computo por id
+            LaboratorioComputoEntidad laboratorioComputoBuscado = laboratorioComputoDAO.obtenerPorId(id_laboratorioComputo);
 
             ComputadoraEntidad computadora = new ComputadoraEntidad(
                     computadoraDTO.getContrasenaMaestra(),
                     computadoraDTO.getDireccionIP(),
                     computadoraDTO.getNoMaquina(),
                     computadoraDTO.getTipo(),
-                    computadoraDTO.getEstatus(),
                     laboratorioComputoBuscado);
+            
+            //Agregar la computadora a la lista del laboratorio
+            laboratorioComputoBuscado.getComputadoras().add(computadora);
+            
             entityManager.persist(computadora);
             entityManager.getTransaction().commit();
-            entityManager.close();
-            }catch(Exception e){
-                throw new PersistenciaException("Error: " + e.getMessage());
-            }
+        }catch(Exception e){
+            throw new PersistenciaException("Error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -48,21 +59,31 @@ public class ComputadoraDAO implements IComputadoraDAO{
             //Se inicial la transacción
             entityManager.getTransaction().begin();
 
-            //Se busca el estudiante a actualizar
+            //Se busca la computadora a actualizar
             ComputadoraEntidad computadoraBuscada = obtenerPorId(id);
 
             //Se actualizan los valores de la computadora
             computadoraBuscada.setContrasenaMaestra(computadoraDTO.getContrasenaMaestra());
-            computadoraBuscada.setContrasenaMaestra(computadoraDTO.getDireccionIP());
+            computadoraBuscada.setDireccionIP(computadoraDTO.getDireccionIP());
             computadoraBuscada.setNoMaquina(computadoraDTO.getNoMaquina());
             computadoraBuscada.setTipo(computadoraDTO.getTipo());
             computadoraBuscada.setEstatus(computadoraDTO.getEstatus());
 
             entityManager.merge(computadoraBuscada);
             entityManager.getTransaction().commit();
-            entityManager.close();
             }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
+        }
+    }
+    
+    @Override
+    public void actualizarEntidad(ComputadoraEntidad computadoraEntidad) throws PersistenciaException{
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.merge(computadoraEntidad);
+            entityManager.getTransaction().commit();
+        }catch(Exception e){
+            throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }
 
@@ -78,7 +99,6 @@ public class ComputadoraDAO implements IComputadoraDAO{
             //Elimina el estudiante y termina la transacción
             entityManager.remove(computadoraBuscada);
             entityManager.getTransaction().commit();
-            entityManager.close();
         }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
         }

@@ -67,6 +67,7 @@ public class EstudianteEntidad implements Serializable {
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.contrasena = contrasena;
+        this.carrera = carrera;
         this.estaInscrito = true;
         this.estaBloqueado = false;
     }

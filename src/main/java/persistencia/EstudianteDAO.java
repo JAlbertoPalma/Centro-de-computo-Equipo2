@@ -4,15 +4,18 @@
  */
 package persistencia;
 
-import dto.ComputadoraDTO;
 import dto.EstudianteDTO;
+import entidad.ApartadoEntidad;
 import entidad.CarreraEntidad;
 import entidad.ComputadoraEntidad;
 import entidad.EstudianteEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import persistencia.interfaces.IApartadoDAO;
+import persistencia.interfaces.IBloqueoDAO;
 import persistencia.interfaces.ICarreraDAO;
+import persistencia.interfaces.IComputadoraDAO;
 import persistencia.interfaces.IEstudianteDAO;
 
 /**
@@ -20,14 +23,19 @@ import persistencia.interfaces.IEstudianteDAO;
  * @author Beto_
  */
 public class EstudianteDAO implements IEstudianteDAO{
-    @PersistenceContext
-    private EntityManager entityManager;
-    private ICarreraDAO carreraDAO;
     
+    private EntityManager entityManager;
+    private ICarreraDAO carreraDAO = new CarreraDAO(entityManager);
+    private IComputadoraDAO computadoraDAO = new ComputadoraDAO(entityManager);
+    private IApartadoDAO apartadoDAO = new ApartadoDAO(entityManager);
+    private IBloqueoDAO bloqueoDAO = new BloqueoDAO(entityManager);
+
+    public EstudianteDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
     @Override
     public void guardar(EstudianteDTO estudianteDTO, Long id_carrera) throws PersistenciaException{
         try{
-            carreraDAO = new CarreraDAO();
             entityManager.getTransaction().begin();
             CarreraEntidad carreraBuscada = carreraDAO.obtenerPorId(id_carrera);
 
@@ -37,10 +45,11 @@ public class EstudianteDAO implements IEstudianteDAO{
                     estudianteDTO.getApellidoMaterno(),
                     estudianteDTO.getContrasena(),
                     carreraBuscada);
+            carreraBuscada.getEstudiante().add(estudiante);
             entityManager.persist(estudiante);
             entityManager.getTransaction().commit();
-            entityManager.close();
         }catch(Exception e){
+            e.printStackTrace();
             throw new PersistenciaException(e.getMessage());
         }
     }
@@ -62,9 +71,19 @@ public class EstudianteDAO implements IEstudianteDAO{
             
             entityManager.merge(estudianteBuscado);
             entityManager.getTransaction().commit();
-            entityManager.close();
         }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
+        }
+    }
+    
+    @Override
+    public void actualizarEntidad(EstudianteEntidad estudianteEntidad) throws PersistenciaException{
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.merge(estudianteEntidad);
+            entityManager.getTransaction().commit();
+        }catch(Exception e){
+            throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }
 
@@ -80,7 +99,6 @@ public class EstudianteDAO implements IEstudianteDAO{
             //Elimina el estudiante y termina la transacción
             entityManager.remove(estudianteBuscado);
             entityManager.getTransaction().commit();
-            entityManager.close();
         }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
         }
@@ -90,8 +108,8 @@ public class EstudianteDAO implements IEstudianteDAO{
     public EstudianteEntidad obtenerPorId(Long id) throws PersistenciaException{
         EstudianteEntidad estudianteBuscado = entityManager.find(EstudianteEntidad.class, id);
         if(estudianteBuscado == null){
-                throw new PersistenciaException("No se encontró al estudiante con el id");
-            }
+            throw new PersistenciaException("No se encontró al estudiante con el id");
+        }
         return estudianteBuscado;
     }
 
@@ -105,16 +123,14 @@ public class EstudianteDAO implements IEstudianteDAO{
         return estudiantes;
     }
     
-    public void apartarComputadora(Long id_computadora){
-        //buscar compu por id
-    }
     
-    public void bloquearEstudiante(){
-        
-    }
-    
-    public void desbloquearEstudiante(){
-        
-    }
+//    public List<EstudianteEntidad> obtenerEstudiantes(int pagina, int tamanioPagina, String ordenarPor) throws PersistenciaException {
+//        TypedQuery<EstudianteEntidad> query = entityManager.createQuery(
+//            "SELECT e FROM EstudianteEntidad e ORDER BY e." + ordenarPor,
+//            EstudianteEntidad.class);
+//        query.setFirstResult((pagina - 1) * tamanioPagina);
+//        query.setMaxResults(tamanioPagina);
+//        List<EstudianteEntidad> estudiantes = query.getResultList();
+//    }
     
 }

@@ -48,10 +48,11 @@ public class LaboratorioComputoEntidad implements Serializable {
     public LaboratorioComputoEntidad() {
     }
 
-    public LaboratorioComputoEntidad(String nombre, LocalTime horaInicio, LocalTime horaFin) {
+    public LaboratorioComputoEntidad(String nombre, LocalTime horaInicio, LocalTime horaFin, UnidadAcademicaEntidad unidadAcademica) {
         this.nombre = nombre;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.unidadAcademica = unidadAcademica;
     }
 
     public Long getId() {
