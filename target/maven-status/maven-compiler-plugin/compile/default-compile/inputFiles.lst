@@ -1,11 +1,13 @@
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\EstudianteDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IUnidadAcademicaDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\BloqueoEntidad.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IEstudianteBloqueoDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\EstudianteEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\test\testPersistencia.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\ICarreraDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\com\mycompany\centrocomputoe2\CentroComputoE2.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\ComputadoraEntidad.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\EstudianteBloqueoDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\SoftwareInstaladoEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\ComputadoraDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\LaboratorioComputoDTO.java
@@ -24,12 +26,12 @@ C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\jav
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\LaboratorioComputoDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\UnidadAcademicaDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\LaboratorioComputoEntidad.java
-C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\ConexionBBDD.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\CarreraDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\BloqueoDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\ILaboratorioComputoDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\EstudianteDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\PersistenciaException.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IComputadoraDAO.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\ApartadoDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IEstudianteDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\UnidadAcademicaDAO.java

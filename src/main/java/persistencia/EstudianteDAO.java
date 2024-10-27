@@ -25,13 +25,13 @@ import persistencia.interfaces.IEstudianteDAO;
 public class EstudianteDAO implements IEstudianteDAO{
     
     private EntityManager entityManager;
-    private ICarreraDAO carreraDAO = new CarreraDAO(entityManager);
-    private IComputadoraDAO computadoraDAO = new ComputadoraDAO(entityManager);
-    private IApartadoDAO apartadoDAO = new ApartadoDAO(entityManager);
-    private IBloqueoDAO bloqueoDAO = new BloqueoDAO(entityManager);
+    private ICarreraDAO carreraDAO;
+    private IComputadoraDAO computadoraDAO;
 
     public EstudianteDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+        this.carreraDAO = new CarreraDAO(entityManager);
+        this.computadoraDAO = new ComputadoraDAO(entityManager);
     }
     @Override
     public void guardar(EstudianteDTO estudianteDTO, Long id_carrera) throws PersistenciaException{
@@ -67,7 +67,6 @@ public class EstudianteDAO implements IEstudianteDAO{
             estudianteBuscado.setNombres(estudianteDTO.getNombres());
             estudianteBuscado.setApellidoPaterno(estudianteDTO.getApellidoPaterno());
             estudianteBuscado.setApellidoMaterno(estudianteDTO.getApellidoMaterno());
-            estudianteBuscado.setContrasena(estudianteDTO.getContrasena()); //!
             
             entityManager.merge(estudianteBuscado);
             entityManager.getTransaction().commit();
@@ -79,10 +78,9 @@ public class EstudianteDAO implements IEstudianteDAO{
     @Override
     public void actualizarEntidad(EstudianteEntidad estudianteEntidad) throws PersistenciaException{
         try{
-            entityManager.getTransaction().begin();
             entityManager.merge(estudianteEntidad);
-            entityManager.getTransaction().commit();
         }catch(Exception e){
+            e.printStackTrace();
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }

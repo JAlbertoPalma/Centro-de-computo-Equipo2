@@ -22,6 +22,7 @@ entidad\CarreraEntidad.class
 entidad\SoftwareInstaladoEntidad_.class
 persistencia\ComputadoraDAO.class
 entidad\EstudianteBloqueoEntidad_.class
+persistencia\ApartadoDAO.class
 persistencia\interfaces\IUnidadAcademicaDAO.class
 persistencia\BloqueoDAO.class
 dto\UnidadAcademicaDTO.class
@@ -38,7 +39,8 @@ com\mycompany\centrocomputoe2\CentroComputoE2.class
 dto\CarreraDTO.class
 entidad\UnidadAcademicaEntidad.class
 dto\SoftwareInstaladoDTO.class
+persistencia\interfaces\IEstudianteBloqueoDAO.class
 enums\TipoComputadora.class
-persistencia\ConexionBBDD.class
+persistencia\EstudianteBloqueoDAO.class
 entidad\ComputadoraEntidad.class
 persistencia\interfaces\IComputadoraDAO.class

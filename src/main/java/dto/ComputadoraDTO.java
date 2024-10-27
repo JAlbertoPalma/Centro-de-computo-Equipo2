@@ -15,21 +15,30 @@ import javax.persistence.Enumerated;
  */
 public class ComputadoraDTO {
     private String contrasenaMaestra;
-    private String estatus;
     private String direccionIP;
     private int noMaquina;
     private TipoComputadora tipo;
-
+    private String estatus;
+    
     public ComputadoraDTO() {
     }
 
-    public ComputadoraDTO(String contrasenaMaestra, String estatus, String direccionIP, int noMaquina, TipoComputadora tipo) {
+    public ComputadoraDTO(String contrasenaMaestra, String direccionIP, int noMaquina, TipoComputadora tipo) {
         this.contrasenaMaestra = contrasenaMaestra;
-        this.estatus = estatus;
         this.direccionIP = direccionIP;
         this.noMaquina = noMaquina;
         this.tipo = tipo;
+        this.estatus = "Disponible";
     }
+    
+    public ComputadoraDTO(String contrasenaMaestra, String direccionIP, int noMaquina, TipoComputadora tipo, String estatus) {
+        this.contrasenaMaestra = contrasenaMaestra;
+        this.direccionIP = direccionIP;
+        this.noMaquina = noMaquina;
+        this.tipo = tipo;
+        this.estatus = estatus;
+    }
+    
 
     public String getContrasenaMaestra() {
         return contrasenaMaestra;

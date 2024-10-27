@@ -27,13 +27,11 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
     @Override
     public void guardar(UnidadAcademicaDTO unidadAcademicaDTO) throws PersistenciaException {
         entityManager.getTransaction().begin();
-        //buscar laboratorio de computo por id
         
         UnidadAcademicaEntidad unidadAcademica = new UnidadAcademicaEntidad(
                 unidadAcademicaDTO.getNombre());
         entityManager.persist(unidadAcademica);
         entityManager.getTransaction().commit();
-        entityManager.close();
     }
 
     @Override
@@ -49,8 +47,7 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
             unidadAcademicaBuscada.setNombre(unidadAcademicaDTO.getNombre());
 
             entityManager.merge(unidadAcademicaBuscada);
-            entityManager.getTransaction().commit();
-            entityManager.close();
+            entityManager.getTransaction().commit();;
             }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
         }
@@ -68,7 +65,6 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
             //Elimina el estudiante y termina la transacción
             entityManager.remove(unidadAcademicaBuscada);
             entityManager.getTransaction().commit();
-            entityManager.close();
         }catch(Exception e){
             throw new PersistenciaException("Error: " + e.getMessage());
         }

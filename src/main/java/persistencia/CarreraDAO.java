@@ -6,7 +6,6 @@ package persistencia;
 
 import dto.CarreraDTO;
 import entidad.CarreraEntidad;
-import entidad.ComputadoraEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

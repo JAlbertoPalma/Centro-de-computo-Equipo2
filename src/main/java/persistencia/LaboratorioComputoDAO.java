@@ -21,12 +21,12 @@ import persistencia.interfaces.IUnidadAcademicaDAO;
  * @author Beto_
  */
 public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
-    @PersistenceContext
     private EntityManager entityManager;
-    private IUnidadAcademicaDAO unidadAcademicaDAO = new UnidadAcademicaDAO(entityManager);
+    private IUnidadAcademicaDAO unidadAcademicaDAO;
 
     public LaboratorioComputoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+        this.unidadAcademicaDAO = new UnidadAcademicaDAO(entityManager);
     }
     
     @Override
@@ -49,6 +49,7 @@ public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
         entityManager.persist(laboratorioComputo);
         entityManager.getTransaction().commit();
         }catch(Exception e){
+            e.printStackTrace();
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }

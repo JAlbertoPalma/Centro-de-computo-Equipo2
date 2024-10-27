@@ -25,11 +25,13 @@ import persistencia.interfaces.IEstudianteDAO;
 public class EstudianteBloqueoDAO implements IEstudianteBloqueoDAO{
     @PersistenceContext
     private EntityManager entityManager;
-    private IEstudianteDAO estudianteDAO = new EstudianteDAO(entityManager);
-    private IBloqueoDAO bloqueoDAO = new BloqueoDAO(entityManager);
+    private IEstudianteDAO estudianteDAO;
+    private IBloqueoDAO bloqueoDAO;
 
     public EstudianteBloqueoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+        this.estudianteDAO = new EstudianteDAO(entityManager);
+        this.bloqueoDAO = new BloqueoDAO(entityManager);
     }
     
     @Override
@@ -74,6 +76,7 @@ public class EstudianteBloqueoDAO implements IEstudianteBloqueoDAO{
             estudianteDAO.actualizarEntidad(estudiante);
             bloqueoDAO.actualizarEntidad(bloqueo);
             actualizarEntidad(estudianteBloqueoBuscado);
+            entityManager.getTransaction().commit();
             
         }catch(Exception e){
             throw new PersistenciaException("No se pudo desbloquear " + e.getMessage());
@@ -83,9 +86,7 @@ public class EstudianteBloqueoDAO implements IEstudianteBloqueoDAO{
     @Override
     public void actualizarEntidad(EstudianteBloqueoEntidad estudianteBloqueoEntidad) throws PersistenciaException {
         try{
-            entityManager.getTransaction().begin();
             entityManager.merge(estudianteBloqueoEntidad);
-            entityManager.getTransaction().commit();
         }catch(Exception e){
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }

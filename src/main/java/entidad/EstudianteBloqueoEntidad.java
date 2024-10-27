@@ -26,10 +26,10 @@ public class EstudianteBloqueoEntidad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "fechaInicio", columnDefinition = "TIME")
+    @Column(name = "fechaInicio", columnDefinition = "DATE")
     private LocalDate fechaInicio;
     
-    @Column(name = "fechaFin", columnDefinition = "TIME")
+    @Column(name = "fechaFin", columnDefinition = "DATE")
     private LocalDate fechaFin;
     
     @ManyToOne
@@ -86,6 +86,6 @@ public class EstudianteBloqueoEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "EstudianteBloqueoEntidad{" + "id=" + id + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estudiante=" + estudiante + ", bloqueo=" + bloqueo + '}';
+        return "EstudianteBloqueoEntidad{" + "id=" + id + ", fechaInicio=" + fechaInicio.toString() + ", fechaFin=" + fechaFin.toString() + ", estudiante=" + estudiante + ", bloqueo=" + bloqueo + '}';
     }
 }

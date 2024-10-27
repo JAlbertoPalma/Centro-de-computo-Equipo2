@@ -23,12 +23,14 @@ import persistencia.interfaces.IEstudianteDAO;
 public class ApartadoDAO implements IApartadoDAO{
     @PersistenceContext
     private EntityManager entityManager;
-    private IEstudianteDAO estudianteDAO = new EstudianteDAO(entityManager);
-    private IComputadoraDAO computadoraDAO = new ComputadoraDAO(entityManager);
+    private IEstudianteDAO estudianteDAO;
+    private IComputadoraDAO computadoraDAO;
 
 
     public ApartadoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+        this.estudianteDAO = new EstudianteDAO(entityManager);
+        this.computadoraDAO = new ComputadoraDAO(entityManager);
     }
     
     @Override
@@ -56,6 +58,7 @@ public class ApartadoDAO implements IApartadoDAO{
             entityManager.persist(apartado);
             entityManager.getTransaction().commit();
         }catch(Exception e){
+            e.printStackTrace();
             throw new PersistenciaException("No se pudo guardar el apartado: " + e.getMessage());
         }
     }
@@ -81,6 +84,7 @@ public class ApartadoDAO implements IApartadoDAO{
             computadoraDAO.actualizarEntidad(computadora);
             estudianteDAO.actualizarEntidad(estudiante);
             actualizarEntidad(apartadoBuscado);
+            entityManager.getTransaction().commit();
             
         }catch(Exception e){
             throw new PersistenciaException("No se pudo desapartar " + e.getMessage());
@@ -90,9 +94,7 @@ public class ApartadoDAO implements IApartadoDAO{
     @Override
     public void actualizarEntidad(ApartadoEntidad apartadoEntidad) throws PersistenciaException{
         try{
-            entityManager.getTransaction().begin();
             entityManager.merge(apartadoEntidad);
-            entityManager.getTransaction().commit();
         }catch(Exception e){
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }

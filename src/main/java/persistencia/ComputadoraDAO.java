@@ -22,10 +22,10 @@ import persistencia.interfaces.ILaboratorioComputoDAO;
 public class ComputadoraDAO implements IComputadoraDAO{
     @PersistenceContext
     private EntityManager entityManager;
-    ILaboratorioComputoDAO laboratorioComputoDAO = new LaboratorioComputoDAO(entityManager);
-
+    ILaboratorioComputoDAO laboratorioComputoDAO;
     public ComputadoraDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+        this.laboratorioComputoDAO = new LaboratorioComputoDAO(entityManager);
     }
 
     @Override
@@ -79,9 +79,7 @@ public class ComputadoraDAO implements IComputadoraDAO{
     @Override
     public void actualizarEntidad(ComputadoraEntidad computadoraEntidad) throws PersistenciaException{
         try{
-            entityManager.getTransaction().begin();
             entityManager.merge(computadoraEntidad);
-            entityManager.getTransaction().commit();
         }catch(Exception e){
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }

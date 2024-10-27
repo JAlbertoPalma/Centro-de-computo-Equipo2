@@ -14,7 +14,7 @@ import persistencia.PersistenciaException;
  * @author Beto_
  */
 public interface IBloqueoDAO {
-    public void guardar(BloqueoDTO bloqueoDTO, Long id_laboratorioComputo) throws PersistenciaException;
+    public void guardar(BloqueoDTO bloqueoDTO) throws PersistenciaException;
     
     public void actualizar(Long id, BloqueoDTO bloqueoDTO) throws PersistenciaException;
     

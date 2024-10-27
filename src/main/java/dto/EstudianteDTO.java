@@ -17,6 +17,12 @@ public class EstudianteDTO {
     public EstudianteDTO() {
     }
 
+    public EstudianteDTO(String nombres, String apellidoPaterno, String apellidoMaterno) {
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+    }
+    
     public EstudianteDTO(String nombres, String apellidoPaterno, String apellidoMaterno, String contrasena) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;

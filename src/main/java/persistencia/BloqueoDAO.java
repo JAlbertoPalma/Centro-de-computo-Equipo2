@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import persistencia.interfaces.IBloqueoDAO;
-import persistencia.interfaces.IEstudianteDAO;
 
 /**
  *
@@ -19,7 +18,6 @@ import persistencia.interfaces.IEstudianteDAO;
 public class BloqueoDAO implements IBloqueoDAO{
     @PersistenceContext
     private EntityManager entityManager;
-    private IEstudianteDAO estudianteDAO = new EstudianteDAO(entityManager);
 
 
     public BloqueoDAO(EntityManager entityManager) {
@@ -27,7 +25,7 @@ public class BloqueoDAO implements IBloqueoDAO{
     }
 
     @Override
-    public void guardar(BloqueoDTO bloqueoDTO, Long id_laboratorioComputo) throws PersistenciaException {
+    public void guardar(BloqueoDTO bloqueoDTO) throws PersistenciaException {
         try{
         entityManager.getTransaction().begin();
         
@@ -63,9 +61,7 @@ public class BloqueoDAO implements IBloqueoDAO{
     @Override
     public void actualizarEntidad(BloqueoEntidad bloqueoEntidad) throws PersistenciaException{
         try{
-            entityManager.getTransaction().begin();
             entityManager.merge(bloqueoEntidad);
-            entityManager.getTransaction().commit();
         }catch(Exception e){
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }
