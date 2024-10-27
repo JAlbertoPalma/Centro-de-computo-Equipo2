@@ -169,7 +169,9 @@ public class JframeAdminReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonReporteCentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteCentroActionPerformed
-        // TODO add your handling code here:
+        JframeAdminReporteCentroComputoFiltro j = new JframeAdminReporteCentroComputoFiltro();
+        j.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonReporteCentroActionPerformed
 
     private void jButtonReporteCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteCarrerasActionPerformed

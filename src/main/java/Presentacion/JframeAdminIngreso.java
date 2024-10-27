@@ -143,7 +143,7 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
-        JframeAdminIngreso j = new JframeAdminIngreso();
+        JframeAdminMenu j = new JframeAdminMenu();
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonIngresarActionPerformed
