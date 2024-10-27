@@ -5,9 +5,7 @@
 package persistencia;
 
 import dto.ComputadoraDTO;
-import dto.EstudianteDTO;
 import entidad.ComputadoraEntidad;
-import entidad.EstudianteEntidad;
 import entidad.LaboratorioComputoEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,18 +14,31 @@ import persistencia.interfaces.IComputadoraDAO;
 import persistencia.interfaces.ILaboratorioComputoDAO;
 
 /**
- *
+ * Representa la clase DAO que gestiona las operaciones
+ * de la computadora en la base de datos
  * @author Beto_
  */
 public class ComputadoraDAO implements IComputadoraDAO{
     @PersistenceContext
     private EntityManager entityManager;
     ILaboratorioComputoDAO laboratorioComputoDAO;
+    
+    /**
+     * Construye una ComputadoraDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public ComputadoraDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.laboratorioComputoDAO = new LaboratorioComputoDAO(entityManager);
     }
-
+    
+    /**
+     * Persiste una computadora asociada a un laboratorio de computo
+     * @param computadoraDTO el DTO de la computadora
+     * @param id_laboratorioComputo el id del laboratorio de computo
+     * @throws PersistenciaException si no se logra guardar
+     */
     @Override
     public void guardar(ComputadoraDTO computadoraDTO, Long id_laboratorioComputo) throws PersistenciaException {
         try{
@@ -53,6 +64,12 @@ public class ComputadoraDAO implements IComputadoraDAO{
         }
     }
 
+    /**
+     * Actualiza una computadora con un DTO y su id
+     * @param id el id de la computadora
+     * @param computadoraDTO el DTO de la computadora
+     * @throws PersistenciaException si no se puede actualizar
+     */
     @Override
     public void actualizar(Long id, ComputadoraDTO computadoraDTO) throws PersistenciaException {
         try{ 
@@ -76,6 +93,11 @@ public class ComputadoraDAO implements IComputadoraDAO{
         }
     }
     
+    /**
+     * Actualiza la entidad con otra entidad
+     * @param computadoraEntidad la computadora entidad 
+     * @throws PersistenciaException si no se puede actualizar la entidad
+     */
     @Override
     public void actualizarEntidad(ComputadoraEntidad computadoraEntidad) throws PersistenciaException{
         try{
@@ -84,7 +106,12 @@ public class ComputadoraDAO implements IComputadoraDAO{
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }
-
+    
+    /**
+     * Elimina una computadora con su id
+     * @param id el id de la computadora
+     * @throws PersistenciaException si no se puede eliminar
+     */
     @Override
     public void eliminar(Long id) throws PersistenciaException {
         try{
@@ -101,7 +128,13 @@ public class ComputadoraDAO implements IComputadoraDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Obtiene la computadora entidad por su id
+     * @param id el id de la computadora
+     * @return una computadora entidad
+     * @throws PersistenciaException si no se logra obtener
+     */
     @Override
     public ComputadoraEntidad obtenerPorId(Long id) throws PersistenciaException {
         ComputadoraEntidad computadoraBuscada = entityManager.find(ComputadoraEntidad.class, id);
@@ -111,6 +144,11 @@ public class ComputadoraDAO implements IComputadoraDAO{
         return computadoraBuscada;
     }
 
+    /**
+     * Obtiene una lista de computadoras entidad
+     * @return la lista de computadoras entidad
+     * @throws PersistenciaException si la lista está vacía
+     */
     @Override
     public List<ComputadoraEntidad> obtenerComputadoras() throws PersistenciaException {
         List<ComputadoraEntidad> computadoras = entityManager.createQuery("SELECT e FROM ComputadoraEntidad e", ComputadoraEntidad.class)

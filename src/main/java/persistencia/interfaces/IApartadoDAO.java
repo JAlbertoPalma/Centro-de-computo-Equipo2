@@ -9,7 +9,8 @@ import java.util.List;
 import persistencia.PersistenciaException;
 
 /**
- *
+ * define un contrato para las operaciones CRUD
+ * sobre el DAO del apartado
  * @author Beto_
  */
 public interface IApartadoDAO {

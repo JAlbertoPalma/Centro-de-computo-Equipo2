@@ -8,22 +8,30 @@ import dto.BloqueoDTO;
 import entidad.BloqueoEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import persistencia.interfaces.IBloqueoDAO;
 
 /**
- *
+ * Representa la clase DAO que gestiona las operaciones
+ * del objeto Bloqueo en la base de datos
  * @author Beto_
  */
 public class BloqueoDAO implements IBloqueoDAO{
-    @PersistenceContext
     private EntityManager entityManager;
 
-
+    /**
+     * Construye un BloqueoDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public BloqueoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-
+    
+    /**
+     * Crea un nuevo objeto bloqueo apartir de un DTO
+     * @param bloqueoDTO el bloqueoDTO a extraer datos
+     * @throws PersistenciaException  Si no se puede guardar
+     */
     @Override
     public void guardar(BloqueoDTO bloqueoDTO) throws PersistenciaException {
         try{
@@ -38,7 +46,13 @@ public class BloqueoDAO implements IBloqueoDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Actualiza un bloqueo con los datos del DTO buscando por su id
+     * @param id el id el bloqueo
+     * @param bloqueoDTO el BloqueoDTO a extraer datos
+     * @throws PersistenciaException Si no se puede actualizar
+     */
     @Override
     public void actualizar(Long id, BloqueoDTO bloqueoDTO) throws PersistenciaException {
         try{ 
@@ -58,6 +72,11 @@ public class BloqueoDAO implements IBloqueoDAO{
         }
     }
     
+    /**
+     * Actualiza la entidad con otra entidad
+     * @param bloqueoEntidad la nueva entidad bloqueo
+     * @throws PersistenciaException Si no se puede actualizar la entidad de bloqueo
+     */
     @Override
     public void actualizarEntidad(BloqueoEntidad bloqueoEntidad) throws PersistenciaException{
         try{
@@ -66,7 +85,12 @@ public class BloqueoDAO implements IBloqueoDAO{
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }
-
+    
+    /**
+     * Elimina un bloqueo por su id
+     * @param id el id del bloqueo
+     * @throws PersistenciaException Si no se puede eliminar
+     */
     @Override
     public void eliminar(Long id) throws PersistenciaException {
         try{
@@ -84,6 +108,12 @@ public class BloqueoDAO implements IBloqueoDAO{
         }
     }
 
+    /**
+     * Obtiene un bloqueo por su id
+     * @param id el id del bloqueo
+     * @return La entidad bloqueo
+     * @throws PersistenciaException si no se obtiene el bloqueo
+     */
     @Override
     public BloqueoEntidad obtenerPorId(Long id) throws PersistenciaException {
         BloqueoEntidad bloqueoEntidad = entityManager.find(BloqueoEntidad.class, id);
@@ -93,6 +123,11 @@ public class BloqueoDAO implements IBloqueoDAO{
         return bloqueoEntidad;
     }
 
+    /**
+     * obtiene una lista de bloqueos entidad
+     * @return la lista de bloqueos entidad
+     * @throws PersistenciaException si la lista está vacía
+     */
     @Override
     public List<BloqueoEntidad> obtenerBloqueos() throws PersistenciaException {
         List<BloqueoEntidad> bloqueos = entityManager.createQuery("SELECT e FROM BloqueoEntidad e", BloqueoEntidad.class)
@@ -102,8 +137,4 @@ public class BloqueoDAO implements IBloqueoDAO{
         }
         return bloqueos;
     }
-    
-    
-
-    
 }

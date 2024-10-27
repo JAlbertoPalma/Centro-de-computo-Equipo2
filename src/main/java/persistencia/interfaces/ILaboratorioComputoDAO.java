@@ -4,16 +4,14 @@
  */
 package persistencia.interfaces;
 
-import dto.EstudianteDTO;
 import dto.LaboratorioComputoDTO;
-import entidad.EstudianteEntidad;
 import entidad.LaboratorioComputoEntidad;
-import entidad.UnidadAcademicaEntidad;
 import java.util.List;
 import persistencia.PersistenciaException;
 
 /**
- *
+ * define un contrato para las operaciones CRUD
+ * sobre el DAO del laboratorio de computo
  * @author Beto_
  */
 public interface ILaboratorioComputoDAO {

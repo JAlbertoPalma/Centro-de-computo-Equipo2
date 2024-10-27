@@ -9,7 +9,8 @@ import java.util.List;
 import persistencia.PersistenciaException;
 
 /**
- *
+ * define un contrato para las operaciones CRUD
+ * sobre el DAO del bloqueo asociado a un estudiante
  * @author Beto_
  */
 public interface IEstudianteBloqueoDAO {

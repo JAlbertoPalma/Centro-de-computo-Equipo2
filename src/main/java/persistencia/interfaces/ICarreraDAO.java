@@ -12,7 +12,8 @@ import java.util.List;
 import persistencia.PersistenciaException;
 
 /**
- *
+ * define un contrato para las operaciones CRUD
+ * sobre el DAO de la carrera
  * @author Beto_
  */
 public interface ICarreraDAO {

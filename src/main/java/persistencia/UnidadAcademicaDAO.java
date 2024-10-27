@@ -13,17 +13,28 @@ import javax.persistence.PersistenceContext;
 import persistencia.interfaces.IUnidadAcademicaDAO;
 
 /**
- *
+ * Representa la clase DAO que gestiona las operaciones
+ * de la unidadAcademica en la base de datos
  * @author Beto_
  */
 public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Construye una UnidadAcademicaDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public UnidadAcademicaDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
     
+    /**
+     * persiste una unidad academica con un DTO
+     * @param unidadAcademicaDTO el DTO de la unidad academica
+     * @throws PersistenciaException si no se puede persistir
+     */
     @Override
     public void guardar(UnidadAcademicaDTO unidadAcademicaDTO) throws PersistenciaException {
         entityManager.getTransaction().begin();
@@ -33,7 +44,13 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
         entityManager.persist(unidadAcademica);
         entityManager.getTransaction().commit();
     }
-
+    
+    /**
+     * actualiza la unidad academica con un DTO y su id
+     * @param id el id de la unidad academica
+     * @param unidadAcademicaDTO el DTO de la unidad academica
+     * @throws PersistenciaException si no se puede actualizar
+     */
     @Override
     public void actualizar(Long id, UnidadAcademicaDTO unidadAcademicaDTO) throws PersistenciaException {
         try{ 
@@ -52,7 +69,12 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * elimina una unidad academica por su id
+     * @param id el id de la unidad academica
+     * @throws PersistenciaException si no se puede eliminar
+     */
     @Override
     public void eliminar(Long id) throws PersistenciaException {
         try{
@@ -69,7 +91,13 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * obtiene una unidadAcademica por su id
+     * @param id el id de la unidad academica
+     * @return una unidad academica entidad
+     * @throws PersistenciaException si no se logra obtener
+     */
     @Override
     public UnidadAcademicaEntidad obtenerPorId(Long id) throws PersistenciaException {
         UnidadAcademicaEntidad unidadAcademicaBuscada = entityManager.find(UnidadAcademicaEntidad.class, id);
@@ -78,7 +106,12 @@ public class UnidadAcademicaDAO implements IUnidadAcademicaDAO{
         }
         return unidadAcademicaBuscada;
     }
-
+    
+    /**
+     * Obtiene una lista de unidades academicas entidad
+     * @return una lista de unidades academicas entidad
+     * @throws PersistenciaException si la lista está vacía
+     */
     @Override
     public List<UnidadAcademicaEntidad> obtenerUnidadesAcademicas() throws PersistenciaException {
         List<UnidadAcademicaEntidad> unidadesAcademicas = entityManager.createQuery("SELECT e FROM LaboratorioComputoEntidad e", UnidadAcademicaEntidad.class)

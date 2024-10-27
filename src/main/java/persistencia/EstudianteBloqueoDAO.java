@@ -19,7 +19,8 @@ import persistencia.interfaces.IEstudianteBloqueoDAO;
 import persistencia.interfaces.IEstudianteDAO;
 
 /**
- *
+ * Representa la clase DAO que gestiona las operaciones
+ * de los bloqueos asociados a estudiantes en la base de datos
  * @author Beto_
  */
 public class EstudianteBloqueoDAO implements IEstudianteBloqueoDAO{
@@ -28,6 +29,11 @@ public class EstudianteBloqueoDAO implements IEstudianteBloqueoDAO{
     private IEstudianteDAO estudianteDAO;
     private IBloqueoDAO bloqueoDAO;
 
+    /**
+     * Construye un EstudianteBloqueoDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public EstudianteBloqueoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.estudianteDAO = new EstudianteDAO(entityManager);
