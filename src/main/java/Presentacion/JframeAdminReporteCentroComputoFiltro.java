@@ -324,7 +324,7 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
         if (this.centroComputoAux.equalsIgnoreCase("") || this.CentrosComputoAux.isEmpty()) {
             for (int i = 0; i < this.jComboBoxCentroComputo.getItemCount(); i++) {
                 this.CentrosComputoAux.add(this.jComboBoxCentroComputo.getItemAt(i));
-                this.centroComputoAux=this.CentrosComputoAux.toString();
+                this.centroComputoAux = this.CentrosComputoAux.toString();
             }
         }
         if (this.CarrerasAux.isEmpty()) {
@@ -341,6 +341,11 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Valores no validos en Fechas");
+            List<String> vacio = new ArrayList<>(); //Auxiliar vacio.
+            this.CarrerasAux = vacio; // Igualación para que el auxiliar de Carreras vuelva a estar vacio.
+            this.CentrosComputoAux = vacio;
+            CarrerasAux = new ArrayList<>(this.jComboBoxCarreras.getItemCount());
+            CentrosComputoAux = new ArrayList<>(this.jComboBoxCentroComputo.getItemCount());
         }
 
 
