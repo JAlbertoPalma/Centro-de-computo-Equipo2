@@ -147,7 +147,58 @@ public class ReporteDAO implements IReporteDAO{
      */
     @Override
     public void reporteBloqueos(LocalDate fechaInicio, LocalDate fechaFin) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            // Crear un documento PDF
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("reporte_bloqueos.pdf"));
+            document.open();
+
+            // Agregar el título
+            Paragraph titulo = new Paragraph("Reporte de bloqueos");
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            document.add(titulo);
+
+            // Crear la tabla
+            PdfPTable tabla = new PdfPTable(4);
+            tabla.setWidthPercentage(100);
+            
+            // Agregar las cabeceras
+            agregarCabeceras3(tabla);
+            
+            String jpql = 
+            "SELECT CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) AS nombreCompleto, " +
+            "       eb.fechaInicio, COALESCE(eb.fechaFin, 'N/A'), b.motivo " +
+            "FROM EstudianteBloqueoEntidad eb " +
+            "JOIN eb.estudiante e " +
+            "JOIN eb.bloqueo b " +
+            "WHERE eb.fechaInicio BETWEEN :fechaInicio AND :fechaFin";
+
+            Query query = entityManager.createQuery(jpql, Object[].class);
+            query.setParameter("fechaInicio", fechaInicio);
+            query.setParameter("fechaFin", fechaFin);
+
+            List<Object[]> results = query.getResultList();
+            
+            // Agregar los datos a la tabla
+            for (Object[] row : results) {
+                PdfPCell cell;
+                cell = new PdfPCell(new Phrase(row[0].toString())); // Nombre dl alumno
+                tabla.addCell(cell);
+                cell = new PdfPCell(new Phrase(row[1].toString())); // Fecha de bloqueo
+                tabla.addCell(cell);
+                cell = new PdfPCell(new Phrase(row[2].toString())); // Fecha de liberación
+                tabla.addCell(cell);
+                cell = new PdfPCell(new Phrase(row[3].toString())); // Motivo
+                tabla.addCell(cell);
+            }
+            // Agregar la tabla al documento
+            document.add(tabla);
+            document.close(); 
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new PersistenciaException("No se pudo hacer el reporte: " + e.getMessage());
+        }
     }
     
     /**
