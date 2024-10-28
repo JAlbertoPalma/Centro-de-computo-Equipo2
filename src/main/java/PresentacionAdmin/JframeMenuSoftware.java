@@ -4,6 +4,7 @@
  */
 package PresentacionAdmin;
 
+import PresentacionCliente.JframePantallaBloqueo;
 import PresentacionEstudiante.JframeEstudianteIngreso;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -168,7 +169,7 @@ public class JframeMenuSoftware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAdministradorActionPerformed
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
-        // TODO add your handling code here:
+        JframePantallaBloqueo j = new JframePantallaBloqueo(em);
     }//GEN-LAST:event_jButtonClienteActionPerformed
 
     private void jButtonEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudianteActionPerformed
