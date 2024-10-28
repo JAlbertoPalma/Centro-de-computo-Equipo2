@@ -125,8 +125,17 @@ public class ReporteDAO implements IReporteDAO{
             throw new PersistenciaException("No se pudo hacer el reporte: " + e.getMessage());
         }
     }
-    public void reporteCarreras(LocalDate fechaInicio, LocalDate fechaFin, List<Long> idsCarreras){
-        try{
+    /**
+     * Crea un documento pdf con un reporte acerca de los
+     * apartados por carreras
+     * @param fechaInicio la fecha de inicio
+     * @param fechaFin la fecha fin
+     * @param ids_carreras las carreras a elegir
+     * @throws PersistenciaException si no se puede crear el reporte
+     */
+    @Override
+    public void reporteCarreras(LocalDate fechaInicio, LocalDate fechaFin, List<Long> ids_carreras) throws PersistenciaException {
+              try{
             // Crear un documento PDF
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("reporte_carreras.pdf"));
@@ -195,18 +204,6 @@ public class ReporteDAO implements IReporteDAO{
             e.printStackTrace();
             throw new PersistenciaException("No se pudo hacer el reporte: " + e.getMessage());
         }
-    }
-    /**
-     * Crea un documento pdf con un reporte acerca de los
-     * apartados por carreras
-     * @param fechaInicio la fecha de inicio
-     * @param fechaFin la fecha fin
-     * @param ids_carreras las carreras a elegir
-     * @throws PersistenciaException si no se puede crear el reporte
-     */
-    @Override
-    public void reporteCarreras(LocalDate fechaInicio, LocalDate fechaFin, List<Long> ids_carreras) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     /**
