@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.mycompany.centrocomputoe2"},{"l":"dto"},{"l":"entidad"},{"l":"enums"},{"l":"persistencia"},{"l":"persistencia.interfaces"},{"l":"test"}];updateSearchResults();

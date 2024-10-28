@@ -5,6 +5,7 @@
 package entidad;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +33,11 @@ public class ApartadoEntidad implements Serializable {
     @Column(name = "horaFin", columnDefinition = "TIME")
     private LocalTime horaFin;
     
-    @Column(name = "tiempoActividad", columnDefinition = "TIME")
-    private Long segundosActividad;
+    @Column(name = "fecha", columnDefinition = "DATE")
+    private LocalDate fecha;
     
+    @Column(name = "tiempoActividad")
+    private Long segundosActividad;
     
     @ManyToOne
     @JoinColumn(name = "id_estudiante")
@@ -46,6 +49,7 @@ public class ApartadoEntidad implements Serializable {
 
     public ApartadoEntidad() {
         this.horaInicio = LocalTime.now();
+        this.fecha = LocalDate.now();
     }
 
     public Long getId() {
@@ -80,6 +84,14 @@ public class ApartadoEntidad implements Serializable {
         this.segundosActividad = segundosActividad;
     }
 
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
     public EstudianteEntidad getEstudiante() {
         return estudiante;
     }
@@ -96,8 +108,5 @@ public class ApartadoEntidad implements Serializable {
         this.computadora = computadora;
     }
 
-    @Override
-    public String toString() {
-        return "ApartadoEntidad{" + "id=" + id + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", segundosActividad=" + segundosActividad + ", estudiante=" + estudiante + ", computadora=" + computadora + '}';
-    }
+    
 }

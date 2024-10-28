@@ -73,6 +73,8 @@ public class testPersistencia {
 //            unidadAcademicaDAO.guardar(new UnidadAcademicaDTO("ITSON CENTRO"));
 //            laboratorioComputoDAO.guardar(new LaboratorioComputoDTO("cisco", LocalTime.of(0, 30), LocalTime.of(17, 30)), Long.valueOf("1"));
 //            computadoraDAO.guardar(new ComputadoraDTO("abc12", "199.555.33", 1, TipoComputadora.TIPO1), Long.valueOf("1"));
+//            computadoraDAO.guardar(new ComputadoraDTO("abc23", "199.555.33", 2, TipoComputadora.TIPO1), Long.valueOf("1"));
+//            computadoraDAO.guardar(new ComputadoraDTO("abc25", "199.555.33", 3, TipoComputadora.TIPO1), Long.valueOf("1"));
 //        } catch (PersistenciaException ex) {
 //            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -118,31 +120,37 @@ public class testPersistencia {
         //aparta: correcto
 //        try{
 //            apartadoDAO.apartar(Long.valueOf("1"), Long.valueOf("1"));
+//            apartadoDAO.apartar(Long.valueOf("2"), Long.valueOf("3"));
+//            apartadoDAO.apartar(Long.valueOf("3"), Long.valueOf("2"));
 //        }catch(PersistenciaException pe){
 //            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
 //        }
         
         //desaparta: correcto
 //        try{
-//            apartadoDAO.desapartar(Long.valueOf("1"));
+//            apartadoDAO.desapartar(Long.valueOf("4"));
+//            apartadoDAO.desapartar(Long.valueOf("5"));
+//            apartadoDAO.desapartar(Long.valueOf("6"));
 //        }catch(PersistenciaException pe){
 //            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
 //        }
         
         //bloquea: correcto
-//        try{
-//            bloqueoDAO.guardar(new BloqueoDTO("Ver paginas indebidas"));
-//            estudianteBloqueoDAO.bloquear(Long.valueOf("1"), Long.valueOf("1"));
-//        }catch(PersistenciaException pe){
-//            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
-//        }
+        try{
+            bloqueoDAO.guardar(new BloqueoDTO("Ver paginas indebidas"));
+            bloqueoDAO.guardar(new BloqueoDTO("Jugar brawl stars"));
+            estudianteBloqueoDAO.bloquear(Long.valueOf("1"), Long.valueOf("1"));
+            estudianteBloqueoDAO.bloquear(Long.valueOf("2"), Long.valueOf("2"));
+        }catch(PersistenciaException pe){
+            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
+        }
         
         //desbloquea: correcto
-//        try{
-//            estudianteBloqueoDAO.desbloquear(Long.valueOf("1"));
-//        }catch(PersistenciaException pe){
-//            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
-//        }
+        try{
+            estudianteBloqueoDAO.desbloquear(Long.valueOf("1"));
+        }catch(PersistenciaException pe){
+            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
+        }
     
         //Enlista Entidades: correcto
 //        try{

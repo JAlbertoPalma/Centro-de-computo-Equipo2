@@ -1,9 +1,11 @@
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\EstudianteDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IUnidadAcademicaDAO.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\test\testReporte.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\BloqueoEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IEstudianteBloqueoDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\EstudianteEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\test\testPersistencia.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IReporteDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\ICarreraDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\com\mycompany\centrocomputoe2\CentroComputoE2.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\ComputadoraEntidad.java
@@ -18,6 +20,7 @@ C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\jav
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\EstudianteBloqueoEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\SoftwareInstaladoDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IApartadoDAO.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\ReporteDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\UnidadAcademicaEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\CarreraDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\BloqueoDAO.java

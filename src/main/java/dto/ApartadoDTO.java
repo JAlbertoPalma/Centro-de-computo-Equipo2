@@ -4,10 +4,8 @@
  */
 package dto;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 /**
  *
@@ -17,6 +15,7 @@ public class ApartadoDTO {
     private Long id;
     private LocalTime horaInicio;
     private LocalTime horaFin;
+    private LocalDate fecha;
     private Long segundosActividad;
 
     public ApartadoDTO() {
@@ -26,9 +25,10 @@ public class ApartadoDTO {
         this.horaInicio = horaInicio;
     }
 
-    public ApartadoDTO(LocalTime horaInicio, LocalTime horaFin, Long segundosActividad) {
+    public ApartadoDTO(LocalTime horaInicio, LocalTime horaFin, LocalDate fecha, Long segundosActividad) {
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.fecha = fecha;
         this.segundosActividad = segundosActividad;
     }
 
