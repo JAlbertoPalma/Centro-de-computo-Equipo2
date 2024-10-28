@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.text.Document;
 import persistencia.interfaces.IReporteDAO;
 
 /**
@@ -124,7 +125,77 @@ public class ReporteDAO implements IReporteDAO{
             throw new PersistenciaException("No se pudo hacer el reporte: " + e.getMessage());
         }
     }
-    
+    public void reporteCarreras(LocalDate fechaInicio, LocalDate fechaFin, List<Long> idsCarreras){
+        try{
+            // Crear un documento PDF
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("reporte_carreras.pdf"));
+            document.open();
+
+            // Agregar el título
+            Paragraph titulo = new Paragraph("Reporte de carreras");
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            document.add(titulo);
+
+            // Crear la tabla
+            PdfPTable tabla = new PdfPTable(4);
+            tabla.setWidthPercentage(100);
+            
+            // Agregar las cabeceras
+            agregarCabeceras2(tabla);
+           
+            String jpql = 
+                 "SELECT c.nombre, SUM(a.segundosActividad), COUNT(DISTINCT a.estudiante), MAX(a.fecha) AS fecha " +
+                 "FROM ApartadoEntidad a " +
+                 "JOIN a.estudiante e " +
+                 "JOIN e.carrera c " +
+                 "WHERE a.fecha BETWEEN :fechaInicio AND :fechaFin ";
+
+            if (!idsCarreras.isEmpty()) {
+                jpql += " AND c.id IN (";
+                for (int i = 0; i < idsCarreras.size(); i++) {
+                    if (i > 0) {
+                        jpql += ", ";
+                }
+                    jpql += ":" + "carreraId" + i;  // Crea un nombre único para cada parámetro
+                }
+                jpql += ")";
+            }
+            
+            jpql += "GROUP BY c.nombre";
+            Query query = entityManager.createQuery(jpql, Object[].class);
+            query.setParameter("fechaInicio", fechaInicio);
+            query.setParameter("fechaFin", fechaFin);
+
+            if (!idsCarreras.isEmpty()) {
+              for (int i = 0; i < idsCarreras.size(); i++) {
+                query.setParameter("carreraId" + i, idsCarreras.get(i)); // Establece el valor para cada parámetro
+              }
+            }
+
+            List<Object[]> results = query.getResultList();
+
+            // Agregar los datos a la tabla
+            for (Object[] row : results) {
+                PdfPCell cell;
+                cell = new PdfPCell(new Phrase(row[0].toString())); // Nombre de la carrera
+                tabla.addCell(cell);
+                cell = new PdfPCell(new Phrase(row[1].toString())); // Minutos de uso
+                tabla.addCell(cell);
+                cell = new PdfPCell(new Phrase(row[2].toString())); // Cantidad de alumnos
+                tabla.addCell(cell);
+                cell = new PdfPCell(new Phrase(row[3].toString())); // Fecha
+                tabla.addCell(cell);
+            }
+            // Agregar la tabla al documento
+            document.add(tabla);
+            document.close();  
+        
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new PersistenciaException("No se pudo hacer el reporte: " + e.getMessage());
+        }
+    }
     /**
      * Crea un documento pdf con un reporte acerca de los
      * apartados por carreras
@@ -200,6 +271,8 @@ public class ReporteDAO implements IReporteDAO{
             throw new PersistenciaException("No se pudo hacer el reporte: " + e.getMessage());
         }
     }
+    
+    
     
     /**
      * Agrega los nombres de las columnas del primer reporte
