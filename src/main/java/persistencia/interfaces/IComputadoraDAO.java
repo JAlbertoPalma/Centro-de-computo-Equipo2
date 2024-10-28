@@ -26,4 +26,6 @@ public interface IComputadoraDAO {
     public ComputadoraEntidad obtenerPorId(Long id) throws PersistenciaException;
     
     public List<ComputadoraEntidad> obtenerComputadoras() throws PersistenciaException;
+    
+    public List<ComputadoraEntidad> obtenerComputadorasLimite(int pagina, int tamanioPagina) throws PersistenciaException;
 }

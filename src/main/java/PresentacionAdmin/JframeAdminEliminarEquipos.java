@@ -4,6 +4,8 @@ package PresentacionAdmin;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import dto.ComputadoraDTO;
+import entidad.ComputadoraEntidad;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -21,6 +23,7 @@ import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import negocio.ComputadoraNegocio;
 import negocio.exception.NegocioException;
 import negocio.interfaces.IComputadoraNegocio;
 //import negocio.*;
@@ -62,16 +65,16 @@ public class JframeAdminEliminarEquipos extends javax.swing.JFrame {
     /**
      * Creates new form frmCliente
      */
-    public JframeAdminEliminarEquipos(IComputadoraNegocio computadoraNegocio) {
+    public JframeAdminEliminarEquipos() {
         initComponents();
-        this.computadoraNegocioAux = computadoraNegocio;
+        this.computadoraNegocioAux = new ComputadoraNegocio(computadoraDAO);
         this.cargarMetodosIniciales();
     }
 
     private void cargarMetodosIniciales() {
         try {
             this.cargarConfiguracionInicialTablaClientes();
-            this.cargarClientesEnTabla();
+            this.cargarComputadorasEnTabla();
         } catch (NegocioException ex) {
             Logger.getLogger(JframeAdminEliminarEquipos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -188,7 +191,7 @@ public class JframeAdminEliminarEquipos extends javax.swing.JFrame {
         cargarMetodosIniciales();
     }
 
-    private void llenarTablaClientes(List<IComputadoraDAO> computadoraLista) {
+    private void llenarTablaComputadoras(List<ComputadoraEntidad> computadoraLista) {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblEquipos.getModel();
 
         if (modeloTabla.getRowCount() > 0) {
@@ -200,22 +203,21 @@ public class JframeAdminEliminarEquipos extends javax.swing.JFrame {
         if (computadoraLista != null) {
             computadoraLista.forEach(row -> {
                 Object[] fila = new Object[5];
-                fila[0] = row;
-                fila[1] = row.getNombres();
-                fila[2] = row.getApellidoPat();
-                fila[3] = row.getApellidoMat();
-                fila[4] = row.isEliminado();
-
+                fila[0] = row.getId();
+                fila[1] = row.getContrasenaMaestra();
+                fila[2] = row.getEstatus();
+                fila[3] = row.getDireccionIP();
+                fila[4] = row.getNoMaquina();
                 modeloTabla.addRow(fila);
             });
         }
     }
 
-    private void cargarClientesEnTabla() throws NegocioException {
+    private void cargarComputadorasEnTabla() throws NegocioException {
         try {
-            List<ClienteDTO> clientes = this.clienteNegocio.buscarClientesTabla(index);
-            this.llenarTablaClientes(clientes);
-        } catch (NegocioException ex) {
+            List<ComputadoraEntidad> computadoras = this.computadoraDAO.obtenerComputadoras();
+            this.llenarTablaComputadoras(computadoras);
+        } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -301,7 +303,6 @@ public class JframeAdminEliminarEquipos extends javax.swing.JFrame {
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, -1, -1));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
         getContentPane().add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -330,18 +331,18 @@ public class JframeAdminEliminarEquipos extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
-        List<ClienteDTO> clientes = null;
+        List<ComputadoraEntidad> computadoras = null;
         try {
-            clientes = clienteNegocio.buscarClientesTabla(index);
-        } catch (NegocioException ex) {
+            computadoras = computadoraDAO.obtenerComputadorasLimite(pagina, LIMITE);
+        } catch (PersistenciaException ex) {
             Logger.getLogger(JframeAdminEliminarEquipos.class.getName()).log(Level.SEVERE, null, ex);
         }
 //        int totalPaginas = (int) Math.ceil((double) clientes.size() / LIMITE);
-        if (!clientes.isEmpty()) {
+        if (!computadoras.isEmpty()) {
             pagina++;
             index = index + 5;
             try {
-                cargarClientesEnTabla();
+                cargarComputadorasEnTabla();
             } catch (NegocioException ex) {
                 Logger.getLogger(JframeAdminEliminarEquipos.class.getName()).log(Level.SEVERE, null, ex);
             }

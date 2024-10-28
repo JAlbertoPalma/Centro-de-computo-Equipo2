@@ -47,7 +47,6 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
 
         jLabelID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

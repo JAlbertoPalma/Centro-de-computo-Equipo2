@@ -8,13 +8,14 @@ import persistencia.ComputadoraDAO;
 import persistencia.PersistenciaException;
 import java.util.List;
 import negocio.interfaces.IComputadoraNegocio;
+import persistencia.interfaces.IComputadoraDAO;
 
 public class ComputadoraNegocio implements IComputadoraNegocio {
 
-    private ComputadoraDAO computadoraDAO;
+    private IComputadoraDAO computadoraDAO;
     private ComputadoraCVR computadoraCVR;
 
-    public ComputadoraNegocio(ComputadoraDAO computadoraDAO) { // Constructor sin cambios
+    public ComputadoraNegocio(IComputadoraDAO computadoraDAO) { // Constructor sin cambios
         this.computadoraDAO = computadoraDAO;
         this.computadoraCVR = new ComputadoraCVR(); // Instancia de convertidor
     }

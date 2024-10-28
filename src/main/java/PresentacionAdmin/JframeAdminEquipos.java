@@ -9,7 +9,7 @@ package PresentacionAdmin;
  * @author LABCISCO-PC059
  */
 public class JframeAdminEquipos extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form JframeElegirSoftware
      */
@@ -42,7 +42,6 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
         jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
         jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,6 +119,9 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+        System.out.println("Hello World!");
+        JframeAdminEliminarEquipos frmEquipos = new JframeAdminEliminarEquipos();
+        frmEquipos.setVisible(true);
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed

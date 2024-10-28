@@ -41,7 +41,6 @@ public class JframeMenuSoftware extends javax.swing.JFrame {
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
 
         jLabelID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -33,6 +33,7 @@ Presentacion\JframeAdminReportes$1.class
 PresentacionAdmin\JframeAdminMenu.class
 Presentacion\JframeAdminMenu$1.class
 Presentacion\JframeAdminMenu.class
+PresentacionAdmin\JframeAdminEliminarEquipos$1.class
 PresentacionAdmin\JframeAdminReporteCarreraFiltro$2.class
 dto\EstudianteDTO.class
 Presentacion\JframeAdminIngreso.class
@@ -86,6 +87,8 @@ entidad\UnidadAcademicaEntidad_.class
 PresentacionAdmin\JframeAdminReporteCentroComputoFiltro$8.class
 PresentacionEstudiante\JframeEstudianteElegirPC$10.class
 persistencia\interfaces\IReporteDAO.class
+PresentacionAdmin\JframeAdminEliminarEquipos$2.class
+PresentacionAdmin\JframeAdminEliminarEquipos$5.class
 PresentacionAdmin\JframeMenuSoftware.class
 PresentacionEstudiante\JframeEstudiantePCApartada.class
 Presentacion\JframeEstudianteElegirPC$19.class
@@ -95,6 +98,7 @@ PresentacionEstudiante\JframeEstudianteIngreso$1.class
 PresentacionEstudiante\JframeEstudianteElegirPC$13.class
 Presentacion\JframeEstudianteElegirPC$3.class
 Presentacion\JframeMenuSoftware$1.class
+PresentacionAdmin\JframeAdminEliminarEquipos.class
 Presentacion\JframeAdminReportes$4.class
 PresentacionAdmin\JframeAdminReporteCentroComputoFiltro.class
 PresentacionAdmin\JframeMenuSoftware$1.class
@@ -104,6 +108,7 @@ dto\BloqueoDTO.class
 negocio\ApartadoNegocio.class
 PresentacionAdmin\JframeAdminReporteCentroComputoFiltro$9.class
 entidad\EstudianteBloqueoEntidad_.class
+PresentacionAdmin\JframeAdminEliminarEquipos$4.class
 PresentacionEstudiante\JframeEstudianteElegirPC$12.class
 negocio\interfaces\IApartadoNegocio.class
 PresentacionEstudiante\JframeEstudianteElegirPC$7.class
@@ -125,6 +130,7 @@ Presentacion\JframeEstudiantePCApartada.class
 Presentacion\JframeEstudianteElegirPC$24.class
 entidad\LaboratorioComputoEntidad.class
 PresentacionAdmin\JframeAdminReporteCentroComputoFiltro$7.class
+PresentacionAdmin\JframeAdminEliminarEquipos$3.class
 Presentacion\JframeAdminEquipos$2.class
 entidad\ApartadoEntidad.class
 PresentacionAdmin\JframeAdminEquipos$2.class

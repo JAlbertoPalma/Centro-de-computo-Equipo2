@@ -4,6 +4,8 @@
 
 package com.mycompany.centrocomputoe2;
 
+import Presentacion.JframeMenuSoftware;
+
 /**
  *
  * @author Beto_
@@ -11,6 +13,8 @@ package com.mycompany.centrocomputoe2;
 public class CentroComputoE2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World! ");
+        System.out.println("Hello World!");
+        JframeMenuSoftware frmMenuSoftware = new JframeMenuSoftware();
+        frmMenuSoftware.setVisible(true);
     }
 }

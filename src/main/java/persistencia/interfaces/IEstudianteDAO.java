@@ -26,4 +26,6 @@ public interface IEstudianteDAO {
     public EstudianteEntidad obtenerPorId(Long id) throws PersistenciaException;
     
     public List<EstudianteEntidad> obtenerEstudiantes() throws PersistenciaException;
+    
+    public List<EstudianteEntidad> obtenerEstudiantesLimite(int pagina, int tamanioPagina) throws PersistenciaException;
 }

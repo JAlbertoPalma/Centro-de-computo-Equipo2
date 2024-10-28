@@ -42,7 +42,6 @@ public class JframeAdminMenu extends javax.swing.JFrame {
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
 
         jButtonAdminEquipos.setBackground(new java.awt.Color(0, 102, 255));
         jButtonAdminEquipos.setForeground(new java.awt.Color(255, 255, 255));

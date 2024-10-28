@@ -10,6 +10,7 @@ import entidad.LaboratorioComputoEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import persistencia.interfaces.IComputadoraDAO;
 import persistencia.interfaces.ILaboratorioComputoDAO;
 
@@ -156,6 +157,17 @@ public class ComputadoraDAO implements IComputadoraDAO{
         if(computadoras == null || computadoras.isEmpty()){
             throw new PersistenciaException("No hay computadoras por mostrar");
         }
+        return computadoras;
+    }
+    
+    @Override
+    public List<ComputadoraEntidad> obtenerComputadorasLimite(int pagina, int tamanioPagina) throws PersistenciaException {
+        TypedQuery<ComputadoraEntidad> query = entityManager.createQuery(
+            "SELECT e FROM ComputadoraEntidad e",
+            ComputadoraEntidad.class);
+        query.setFirstResult((pagina - 1) * tamanioPagina);
+        query.setMaxResults(tamanioPagina);
+        List<ComputadoraEntidad> computadoras = query.getResultList();
         return computadoras;
     }
     

@@ -9,6 +9,7 @@ import entidad.CarreraEntidad;
 import entidad.EstudianteEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import persistencia.interfaces.ICarreraDAO;
 import persistencia.interfaces.IComputadoraDAO;
 import persistencia.interfaces.IEstudianteDAO;
@@ -156,13 +157,15 @@ public class EstudianteDAO implements IEstudianteDAO{
         return estudiantes;
     }  
     
-//    public List<EstudianteEntidad> obtenerEstudiantes(int pagina, int tamanioPagina, String ordenarPor) throws PersistenciaException {
-//        TypedQuery<EstudianteEntidad> query = entityManager.createQuery(
-//            "SELECT e FROM EstudianteEntidad e ORDER BY e." + ordenarPor,
-//            EstudianteEntidad.class);
-//        query.setFirstResult((pagina - 1) * tamanioPagina);
-//        query.setMaxResults(tamanioPagina);
-//        List<EstudianteEntidad> estudiantes = query.getResultList();
-//    }
+    @Override
+    public List<EstudianteEntidad> obtenerEstudiantesLimite(int pagina, int tamanioPagina) throws PersistenciaException {
+        TypedQuery<EstudianteEntidad> query = entityManager.createQuery(
+            "SELECT e FROM EstudianteEntidad e",
+            EstudianteEntidad.class);
+        query.setFirstResult((pagina - 1) * tamanioPagina);
+        query.setMaxResults(tamanioPagina);
+        List<EstudianteEntidad> estudiantes = query.getResultList();
+        return estudiantes;
+    }
     
 }

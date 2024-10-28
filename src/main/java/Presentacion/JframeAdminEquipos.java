@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import PresentacionAdmin.JframeAdminEliminarEquipos;
+
 /**
  *
  * @author LABCISCO-PC059
@@ -41,7 +43,6 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -148,11 +149,15 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        JframeAdminEliminarEquipos frmEquipos = new JframeAdminEliminarEquipos();
+        frmEquipos.setVisible(true);
     }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+        JframeAdminEliminarEquipos frmEquipos = new JframeAdminEliminarEquipos();
+        frmEquipos.setVisible(true);
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
