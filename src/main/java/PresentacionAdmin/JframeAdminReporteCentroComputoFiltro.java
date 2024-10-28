@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author LABCISCO-PC059
  */
 public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
-
+    private EntityManager ema;
     private String filtrosAux = "";
     String centroComputoAux = ""; //Auxiliar para guardar filtros.
     private List<String> CarrerasAux = new ArrayList<>(); //Auxiliar para guardar filtros.
@@ -27,11 +28,12 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
     /**
      * Creates new form JframeElegirSoftware
      */
-    public JframeAdminReporteCentroComputoFiltro() {
+    public JframeAdminReporteCentroComputoFiltro(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
         CarrerasAux = new ArrayList<>(this.jComboBoxCarreras.getItemCount());
         CentrosComputoAux = new ArrayList<>(this.jComboBoxCentroComputo.getItemCount());
+        ema=em;
     }
 
     /**
@@ -66,14 +68,11 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
         jButtonAñadirCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 450));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +80,6 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 125, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -96,17 +94,13 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
-
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
-        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 75));
 
         jLabelCentroComputo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCentroComputo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCentroComputo.setText("Centro de Computo");
-        jPanelFondo.add(jLabelCentroComputo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 176, 17));
 
         jComboBoxCentroComputo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro 1", "Centro 2", "Centro 3", "Centro 4" }));
         jComboBoxCentroComputo.addItemListener(new java.awt.event.ItemListener() {
@@ -119,17 +113,14 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jComboBoxCentroComputoActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jComboBoxCentroComputo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         jLabelFiltros1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFiltros1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFiltros1.setText("Selección de Filtros");
-        jPanelFondo.add(jLabelFiltros1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 220, -1));
 
         jLabelCarreras.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCarreras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCarreras.setText("Carreras");
-        jPanelFondo.add(jLabelCarreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 126, 17));
 
         jComboBoxCarreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C 1", "C 2", "C 3", "C 4", " " }));
         jComboBoxCarreras.addItemListener(new java.awt.event.ItemListener() {
@@ -142,22 +133,18 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jComboBoxCarrerasActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jComboBoxCarreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
 
         jLabelHorario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelHorario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHorario.setText("Horario");
-        jPanelFondo.add(jLabelHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 126, 17));
 
         jLabelFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicio.setText("Fecha Inicio");
-        jPanelFondo.add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 81, 17));
 
         jLabelFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFin.setText("Fecha Fin");
-        jPanelFondo.add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 81, 17));
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,17 +152,12 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jButtonAceptarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 125, -1));
-        jPanelFondo.add(jTextFieldFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 81, -1));
-        jPanelFondo.add(jTextFieldFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 81, -1));
 
         jLabeFiltroSeleccionado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabeFiltroSeleccionado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabeFiltroSeleccionado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 100, 71));
 
         jLabeFiltroSeleccionado2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabeFiltroSeleccionado2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabeFiltroSeleccionado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 100, 71));
 
         jButtonLimpiar.setText("Restablecer Filtros");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +165,6 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jButtonLimpiarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
 
         jButtonAñadirCentro.setText("Añadir Filtro");
         jButtonAñadirCentro.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +172,6 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jButtonAñadirCentroActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonAñadirCentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         jButtonAñadirCarrera.setText("Añadir Filtro");
         jButtonAñadirCarrera.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +179,102 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
                 jButtonAñadirCarreraActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonAñadirCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
+
+        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
+        jPanelFondo.setLayout(jPanelFondoLayout);
+        jPanelFondoLayout.setHorizontalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabelTitulo))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jLabelFiltros1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabelCentroComputo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(jLabelCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134)
+                .addComponent(jLabelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jComboBoxCentroComputo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141)
+                .addComponent(jComboBoxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(188, 188, 188)
+                .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jButtonAñadirCentro)
+                .addGap(5, 5, 5)
+                .addComponent(jLabeFiltroSeleccionado1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jButtonAñadirCarrera)
+                .addGap(5, 5, 5)
+                .addComponent(jLabeFiltroSeleccionado2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(jButtonLimpiar))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanelFondoLayout.setVerticalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabelFiltros1))
+                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCentroComputo, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxCentroComputo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabeFiltroSeleccionado1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabeFiltroSeleccionado2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAñadirCentro)
+                            .addComponent(jButtonAñadirCarrera))))
+                .addGap(58, 58, 58)
+                .addComponent(jButtonLimpiar)
+                .addGap(7, 7, 7)
+                .addComponent(jButtonAceptar)
+                .addGap(7, 7, 7)
+                .addComponent(jButtonVolver))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,7 +291,7 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminMenu j = new JframeAdminMenu();
+        JframeAdminMenu j = new JframeAdminMenu(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
@@ -246,7 +321,7 @@ public class JframeAdminReporteCentroComputoFiltro extends javax.swing.JFrame {
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             this.fechaInicioAux = formato.parse(this.jTextFieldFechaInicio.getText());
             this.fechaFinAux = formato.parse(this.jTextFieldFechaFin.getText());
-            JframeAdminReporteCentroComputoConfirmacion j = new JframeAdminReporteCentroComputoConfirmacion(this.centroComputoAux, this.CarrerasAux, this.fechaInicioAux, this.fechaFinAux);
+            JframeAdminReporteCentroComputoConfirmacion j = new JframeAdminReporteCentroComputoConfirmacion(this.centroComputoAux, this.CarrerasAux, this.fechaInicioAux, this.fechaFinAux,ema);
             j.setVisible(true);
             this.dispose();
         } catch (Exception e) {

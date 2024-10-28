@@ -4,18 +4,43 @@
  */
 package PresentacionAdmin;
 
+import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
+import negocio.EstudianteNegocio;
+import negocio.exception.NegocioException;
+import persistencia.ApartadoDAO;
+import persistencia.BloqueoDAO;
+import persistencia.CarreraDAO;
+import persistencia.ComputadoraDAO;
+import persistencia.EstudianteBloqueoDAO;
+import persistencia.EstudianteDAO;
+import persistencia.LaboratorioComputoDAO;
+import persistencia.PersistenciaException;
+import persistencia.UnidadAcademicaDAO;
+import persistencia.interfaces.IApartadoDAO;
+import persistencia.interfaces.IBloqueoDAO;
+import persistencia.interfaces.ICarreraDAO;
+import persistencia.interfaces.IComputadoraDAO;
+import persistencia.interfaces.IEstudianteDAO;
+import persistencia.interfaces.ILaboratorioComputoDAO;
+import persistencia.interfaces.IUnidadAcademicaDAO;
+
 /**
  *
  * @author LABCISCO-PC059
  */
 public class JframeAdminIngreso extends javax.swing.JFrame {
 
+    private EntityManager ema;
+    IEstudianteDAO estudianteDAO = new EstudianteDAO(ema);
+
     /**
      * Creates new form JframeElegirSoftware
      */
-    public JframeAdminIngreso() {
+    public JframeAdminIngreso(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
+        ema = em;
     }
 
     /**
@@ -31,14 +56,13 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
         jLabelTitulo = new javax.swing.JLabel();
         jLabelLogoItson = new javax.swing.JLabel();
         jLabelID = new javax.swing.JLabel();
-        jTextFieldID = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
         jButtonIngresar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
         jLabelContraseña = new javax.swing.JLabel();
         jPasswordFieldContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -51,9 +75,9 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
 
         jLabelID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelID.setText("Favor de Ingresar su ID");
+        jLabelID.setText("Nombre Completo");
 
-        jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButtonIngresar.setText("Ingresar");
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +111,7 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
                         .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jPasswordFieldContraseña)
-                                .addComponent(jTextFieldID, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelContraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
@@ -110,7 +134,7 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelContraseña)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,12 +167,41 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
-        JframeAdminMenu j = new JframeAdminMenu();
-        j.setVisible(true);
-        this.dispose();
+        boolean aux1 = false;
+        boolean aux2 = false;
+        EstudianteNegocio n = new EstudianteNegocio(estudianteDAO);
+
+        try {
+            for (long i = 0; i < n.ObtenerListaEstudiantes().size(); i++) {
+                if (this.jTextFieldNombre.getText().equalsIgnoreCase(n.obtenerEstudiante(i).getNombres())) {
+
+                    aux1 = true;
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario Inexistente");
+                    aux1 = false;
+                }
+                for (long j = 0; j < n.ObtenerListaEstudiantes().size(); j++) {
+                    if (this.jTextFieldNombre.getText().equalsIgnoreCase(n.obtenerEstudiante(j).getNombres())) {
+                        aux2 = true;
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Contraseña Incorrecta");
+                        aux2 = false;
+                    }
+                }
+                if (aux1 == true && aux2 == true) {
+                    JframeAdminMenu j = new JframeAdminMenu(ema);
+                    j.setVisible(true);
+                    this.dispose();
+                }
+
+            }
+        } catch (NegocioException p) {
+
+        }
+
+
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIngresar;
@@ -159,6 +212,6 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelFondo;
     private javax.swing.JPasswordField jPasswordFieldContraseña;
-    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

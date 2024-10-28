@@ -7,6 +7,7 @@ package PresentacionAdmin;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author LABCISCO-PC059
  */
 public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
-
+private EntityManager ema;
     private Date fechaInicioAux;
     private Date fechaFinAux;
 
@@ -22,14 +23,14 @@ public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
      * Creates new form JframeElegirSoftware El contructo pide el numero de PC Y
      * las horas del apartado.
      */
-    public JframeAdminReporteBloqueosConfirmacion(Date fechaInicio, Date fechaFin) {
+    public JframeAdminReporteBloqueosConfirmacion(Date fechaInicio, Date fechaFin, EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.fechaInicioAux = fechaInicio;
         this.fechaFinAux = fechaFin;
         this.jLabelFechaInicioE.setText(this.fechaInicioAux.toString());
         this.jLabelFechaFinE.setText(this.fechaFinAux.toString());
-
+         this.ema=em;
     }
 
     /**
@@ -54,24 +55,19 @@ public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
         jLabelFechaInicioE = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 450));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
-        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, 66));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 90));
 
         jLabelDatosReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelDatosReporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDatosReporte.setText("Datos de Reporte");
-        jPanelFondo.add(jLabelDatosReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 184, -1));
 
         jButtonIngresar.setText("Aceptar");
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +75,6 @@ public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
                 jButtonIngresarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 99, -1));
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -87,18 +82,15 @@ public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 99, -1));
 
         jLabelFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFin.setText("Fecha Fin");
-        jPanelFondo.add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 194, -1));
 
         jLabelFechaFinE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaFinE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFinE.setText("Fecha Fin");
         jLabelFechaFinE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabelFechaFinE, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 194, 26));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -113,18 +105,71 @@ public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 10));
-
         jLabelFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicio.setText("Fecha Inicio");
-        jPanelFondo.add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 190, -1));
 
         jLabelFechaInicioE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaInicioE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicioE.setText("Fecha Inicio");
         jLabelFechaInicioE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabelFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 190, 26));
+
+        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
+        jPanelFondo.setLayout(jPanelFondoLayout);
+        jPanelFondoLayout.setHorizontalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(jLabelDatosReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jLabelTitulo))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(jLabelFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(jLabelFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(jButtonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanelFondoLayout.setVerticalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabelDatosReporte))
+                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jLabelFechaInicio)
+                .addGap(5, 5, 5)
+                .addComponent(jLabelFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLabelFechaFin)
+                .addGap(5, 5, 5)
+                .addComponent(jLabelFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jButtonIngresar)
+                .addGap(7, 7, 7)
+                .addComponent(jButtonVolver))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,14 +186,14 @@ public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminReporteBloqueosFiltro j = new JframeAdminReporteBloqueosFiltro();
+        JframeAdminReporteBloqueosFiltro j = new JframeAdminReporteBloqueosFiltro(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Reporte generado");
-        JframeAdminMenu j = new JframeAdminMenu();
+        JframeAdminMenu j = new JframeAdminMenu(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonIngresarActionPerformed

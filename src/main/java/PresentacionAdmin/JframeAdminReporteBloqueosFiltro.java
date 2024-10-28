@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,13 +18,14 @@ import javax.swing.JOptionPane;
 public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
     private Date fechaInicioAux;
     private Date fechaFinAux;
-
+    private EntityManager ema;
     /**
      * Creates new form JframeElegirSoftware
      */
-    public JframeAdminReporteBloqueosFiltro() {
+    public JframeAdminReporteBloqueosFiltro(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ema=em;
     }
 
     /**
@@ -50,15 +52,12 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 450));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
         jPanelFondo.setPreferredSize(new java.awt.Dimension(750, 450));
-        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +65,6 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 81, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -81,32 +79,25 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
-
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
-        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 60));
 
         jLabelFiltros1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFiltros1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFiltros1.setText("Selección de Filtros");
-        jPanelFondo.add(jLabelFiltros1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 165, -1));
 
         jLabelHorario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelHorario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHorario.setText("Horario");
-        jPanelFondo.add(jLabelHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 126, 17));
 
         jLabelFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicio.setText("Fecha Inicio");
-        jPanelFondo.add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 81, 17));
 
         jLabelFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFin.setText("Fecha Fin");
-        jPanelFondo.add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 81, 17));
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,9 +105,6 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
                 jButtonAceptarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 81, -1));
-        jPanelFondo.add(jTextFieldFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 81, -1));
-        jPanelFondo.add(jTextFieldFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 81, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,7 +119,72 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 10));
+        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
+        jPanelFondo.setLayout(jPanelFondoLayout);
+        jPanelFondoLayout.setHorizontalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabelTitulo))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(jLabelFiltros1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(jLabelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanelFondoLayout.setVerticalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabelFiltros1))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAceptar)
+                .addGap(7, 7, 7)
+                .addComponent(jButtonVolver))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +203,7 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminMenu j = new JframeAdminMenu();
+        JframeAdminMenu j = new JframeAdminMenu(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
@@ -161,7 +214,7 @@ public class JframeAdminReporteBloqueosFiltro extends javax.swing.JFrame {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             this.fechaInicioAux = formato.parse(this.jTextFieldFechaInicio.getText());
             this.fechaFinAux = formato.parse(this.jTextFieldFechaFin.getText());
-            JframeAdminReporteBloqueosConfirmacion j = new JframeAdminReporteBloqueosConfirmacion(this.fechaInicioAux, this.fechaFinAux);
+            JframeAdminReporteBloqueosConfirmacion j = new JframeAdminReporteBloqueosConfirmacion(this.fechaInicioAux, this.fechaFinAux, ema);
             j.setVisible(true);
             this.dispose();
         } catch (Exception e) {

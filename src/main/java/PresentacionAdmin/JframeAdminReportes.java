@@ -4,18 +4,21 @@
  */
 package PresentacionAdmin;
 
+import javax.persistence.EntityManager;
+
 /**
  *
  * @author LABCISCO-PC059
  */
 public class JframeAdminReportes extends javax.swing.JFrame {
-
+private EntityManager ema;
     /**
      * Creates new form JframeElegirSoftware
      */
-    public JframeAdminReportes() {
+    public JframeAdminReportes(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ema=em;
     }
 
     /**
@@ -38,7 +41,6 @@ public class JframeAdminReportes extends javax.swing.JFrame {
         jButtonReporteCarreras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 350));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -163,25 +165,25 @@ public class JframeAdminReportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminMenu j = new JframeAdminMenu();
+        JframeAdminMenu j = new JframeAdminMenu(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonReporteCentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteCentroActionPerformed
-        JframeAdminReporteCentroComputoFiltro j = new JframeAdminReporteCentroComputoFiltro();
+        JframeAdminReporteCentroComputoFiltro j = new JframeAdminReporteCentroComputoFiltro(ema);
         j.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonReporteCentroActionPerformed
 
     private void jButtonReporteCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteCarrerasActionPerformed
-      JframeAdminReporteCarreraFiltro j = new JframeAdminReporteCarreraFiltro();
+      JframeAdminReporteCarreraFiltro j = new JframeAdminReporteCarreraFiltro(ema);
       j.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_jButtonReporteCarrerasActionPerformed
 
     private void jButtonReporteBloqueosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteBloqueosActionPerformed
-      JframeAdminReporteBloqueosFiltro j = new JframeAdminReporteBloqueosFiltro();
+      JframeAdminReporteBloqueosFiltro j = new JframeAdminReporteBloqueosFiltro(ema);
       j.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_jButtonReporteBloqueosActionPerformed
