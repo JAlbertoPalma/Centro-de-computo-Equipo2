@@ -18,7 +18,7 @@ public interface ILaboratorioComputoNegocio {
 
     LaboratorioComputoDTO obtenerLaboratorio(Long id) throws NegocioException;
     
-    List<LaboratorioComputoDTO> obtenerListaLaboratoriosComputo();
+    List<LaboratorioComputoDTO> obtenerListaLaboratoriosComputo() throws NegocioException;
 
     void eliminarLaboratorio(Long id) throws NegocioException;
 

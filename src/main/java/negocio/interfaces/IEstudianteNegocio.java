@@ -10,11 +10,11 @@ import negocio.exception.NegocioException;
  */
 public interface IEstudianteNegocio {
 
-    EstudianteDTO registrarEstudiante(EstudianteDTO estudiante) throws NegocioException;
+    EstudianteDTO registrarEstudiante(EstudianteDTO estudiante, Long idCarrera) throws NegocioException;
 
     EstudianteDTO obtenerEstudiante(Long id) throws NegocioException;
     
-    List<EstudianteDTO> ObtenerListaEstudiantes();
+    List<EstudianteDTO> ObtenerListaEstudiantes() throws NegocioException;
 
     void eliminarEstudiante(Long id) throws NegocioException;
 

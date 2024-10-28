@@ -10,11 +10,11 @@ import negocio.exception.NegocioException;
  */
 public interface IComputadoraNegocio {
 
-    ComputadoraDTO crearComputadora(ComputadoraDTO computadora) throws NegocioException;
+    ComputadoraDTO crearComputadora(ComputadoraDTO computadora, Long idLaboratorio) throws NegocioException;
 
     ComputadoraDTO obtenerComputadora(Long id) throws NegocioException;
 
-    List<ComputadoraDTO> obtenerListaComputadora();
+    List<ComputadoraDTO> obtenerListaComputadora() throws NegocioException;
 
     void eliminarComputadora(Long id) throws NegocioException;
 

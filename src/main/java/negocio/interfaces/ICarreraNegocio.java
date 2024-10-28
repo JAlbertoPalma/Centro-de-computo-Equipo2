@@ -17,7 +17,5 @@ public interface ICarreraNegocio {
     List<CarreraDTO> obtenerListaCarreras();
 
     void eliminarCarrera(Long id) throws NegocioException;
-
-    void actualizarCarrera(CarreraDTO carrera) throws NegocioException;
     
 }

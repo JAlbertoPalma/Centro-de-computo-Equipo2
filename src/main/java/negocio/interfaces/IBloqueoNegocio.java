@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Brandon Valenzuela
  */
-public interface IBloqueoException {
+public interface IBloqueoNegocio {
 
     BloqueoDTO crearBloqueo(BloqueoDTO bloqueo) throws Exception;
 
