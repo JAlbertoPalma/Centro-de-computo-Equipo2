@@ -69,17 +69,21 @@ public class JframeAdminReporteCentroComputoConfirmacion extends javax.swing.JFr
         setPreferredSize(new java.awt.Dimension(750, 450));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
+        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, 66));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
+        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 90));
 
         jLabelDatosReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelDatosReporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDatosReporte.setText("Datos de Reporte");
+        jPanelFondo.add(jLabelDatosReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 184, -1));
 
         jButtonIngresar.setText("Aceptar");
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +91,7 @@ public class JframeAdminReporteCentroComputoConfirmacion extends javax.swing.JFr
                 jButtonIngresarActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 99, -1));
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -94,33 +99,40 @@ public class JframeAdminReporteCentroComputoConfirmacion extends javax.swing.JFr
                 jButtonVolverActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 99, -1));
 
         jLabelCentroElegido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelCentroElegido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCentroElegido.setText("Centro");
         jLabelCentroElegido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelFondo.add(jLabelCentroElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 172, 184, 26));
 
         jLabelCentroComputo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCentroComputo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCentroComputo.setText("Centro de Computo");
+        jPanelFondo.add(jLabelCentroComputo, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 142, 184, -1));
 
         jLabelCarrera.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCarrera.setText("Carreras");
+        jPanelFondo.add(jLabelCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 212, 184, -1));
 
         jLabelCarreraE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelCarreraE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCarreraE.setText("Carrera");
         jLabelCarreraE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelFondo.add(jLabelCarreraE, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 242, 184, 26));
 
         jLabelFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFin.setText("Fecha Fin");
+        jPanelFondo.add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 212, 184, -1));
 
         jLabelFechaFinE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaFinE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFinE.setText("Fecha Fin");
         jLabelFechaFinE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelFondo.add(jLabelFechaFinE, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 242, 184, 26));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -132,94 +144,21 @@ public class JframeAdminReporteCentroComputoConfirmacion extends javax.swing.JFr
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
+
+        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 10));
 
         jLabelFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicio.setText("Fecha Inicio");
+        jPanelFondo.add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 142, 184, -1));
 
         jLabelFechaInicioE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaInicioE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicioE.setText("Fecha Inicio");
         jLabelFechaInicioE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
-        jPanelFondo.setLayout(jPanelFondoLayout);
-        jPanelFondoLayout.setHorizontalGroup(
-            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(jLabelTitulo))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(jLabelDatosReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jButtonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addComponent(jLabelCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelFondoLayout.createSequentialGroup()
-                        .addComponent(jLabelCarreraE, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
-                                .addComponent(jLabelCentroComputo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
-                                .addComponent(jLabelCentroElegido, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabelFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(154, 154, 154))
-        );
-        jPanelFondoLayout.setVerticalGroup(
-            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jLabelDatosReporte)
-                .addGap(17, 17, 17)
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCentroComputo)
-                    .addComponent(jLabelFechaInicio))
-                .addGap(5, 5, 5)
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCentroElegido, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCarrera)
-                    .addComponent(jLabelFechaFin))
-                .addGap(5, 5, 5)
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCarreraE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonIngresar)
-                .addGap(7, 7, 7)
-                .addComponent(jButtonVolver))
-        );
+        jPanelFondo.add(jLabelFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 172, 184, 26));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -39,9 +39,11 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
+        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -56,13 +58,17 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
+        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
+
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
+        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 75));
 
         jLabelFunciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFunciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFunciones.setText("Administracion De Equipos");
+        jPanelFondo.add(jLabelFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 220, 40));
 
         jButtonAñadir.setBackground(new java.awt.Color(51, 102, 255));
         jButtonAñadir.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,6 +78,7 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
                 jButtonAñadirActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 220, -1));
 
         jButtonEliminar.setBackground(new java.awt.Color(51, 102, 255));
         jButtonEliminar.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,6 +88,7 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
                 jButtonEliminarActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 220, -1));
 
         jButtonVolver.setBackground(new java.awt.Color(0, 102, 255));
         jButtonVolver.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,58 +98,17 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
-        jPanelFondo.setLayout(jPanelFondoLayout);
-        jPanelFondoLayout.setHorizontalGroup(
-            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabelTitulo))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jButtonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanelFondoLayout.setVerticalGroup(
-            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButtonAñadir)
-                .addGap(7, 7, 7)
-                .addComponent(jButtonEliminar)
-                .addGap(7, 7, 7)
-                .addComponent(jButtonVolver))
-        );
+        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
