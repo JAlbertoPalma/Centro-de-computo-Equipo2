@@ -38,6 +38,7 @@ public class JframeAdminReportes extends javax.swing.JFrame {
         jButtonReporteCarreras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(750, 350));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 

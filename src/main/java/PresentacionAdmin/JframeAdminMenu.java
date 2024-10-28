@@ -35,14 +35,18 @@ public class JframeAdminMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelFunciones = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelFunciones1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(750, 400));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
+        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
 
         jButtonAdminEquipos.setBackground(new java.awt.Color(0, 102, 255));
         jButtonAdminEquipos.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,6 +56,7 @@ public class JframeAdminMenu extends javax.swing.JFrame {
                 jButtonAdminEquiposActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonAdminEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 214, -1));
 
         jButtonVolver.setBackground(new java.awt.Color(0, 102, 255));
         jButtonVolver.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,6 +66,7 @@ public class JframeAdminMenu extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 90, -1));
 
         jButtonGenerarReportes.setBackground(new java.awt.Color(0, 102, 255));
         jButtonGenerarReportes.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,6 +76,7 @@ public class JframeAdminMenu extends javax.swing.JFrame {
                 jButtonGenerarReportesActionPerformed(evt);
             }
         });
+        jPanelFondo.add(jButtonGenerarReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 214, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -81,58 +88,40 @@ public class JframeAdminMenu extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 0));
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
+        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 60));
 
         jLabelFunciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFunciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFunciones.setText("Funciones");
+        jLabelFunciones.setText("Menu Administrador");
+        jPanelFondo.add(jLabelFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 210, -1));
 
-        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
-        jPanelFondo.setLayout(jPanelFondoLayout);
-        jPanelFondoLayout.setHorizontalGroup(
-            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jLabelTitulo))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jButtonAdminEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jButtonGenerarReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
-        jPanelFondoLayout.setVerticalGroup(
-            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFondoLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButtonAdminEquipos)
-                .addGap(7, 7, 7)
-                .addComponent(jButtonGenerarReportes)
-                .addGap(17, 17, 17)
-                .addComponent(jButtonVolver))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
+
+        jPanelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 10));
+
+        jLabelFunciones1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelFunciones1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFunciones1.setText("Funciones");
+        jPanelFondo.add(jLabelFunciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 210, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,9 +162,11 @@ public class JframeAdminMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGenerarReportes;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabelFunciones;
+    private javax.swing.JLabel jLabelFunciones1;
     private javax.swing.JLabel jLabelLogoItson;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFondo;
     // End of variables declaration//GEN-END:variables
 }
