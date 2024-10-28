@@ -5,12 +5,41 @@
 package PresentacionAdmin;
 
 import PresentacionEstudiante.JframeEstudianteIngreso;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import negocio.CarreraNegocio;
+import negocio.EstudianteNegocio;
+import negocio.interfaces.ICarreraNegocio;
+import negocio.interfaces.IComputadoraNegocio;
+import negocio.interfaces.IEstudianteNegocio;
+import persistencia.ApartadoDAO;
+import persistencia.BloqueoDAO;
+import persistencia.CarreraDAO;
+import persistencia.ComputadoraDAO;
+import persistencia.EstudianteBloqueoDAO;
+import persistencia.EstudianteDAO;
+import persistencia.LaboratorioComputoDAO;
+import persistencia.UnidadAcademicaDAO;
+import persistencia.interfaces.IApartadoDAO;
+import persistencia.interfaces.IBloqueoDAO;
+import persistencia.interfaces.ICarreraDAO;
+import persistencia.interfaces.IComputadoraDAO;
+import persistencia.interfaces.IEstudianteDAO;
+import persistencia.interfaces.ILaboratorioComputoDAO;
+import persistencia.interfaces.IUnidadAcademicaDAO;
 
 /**
  *
  * @author LABCISCO-PC059
  */
 public class JframeMenuSoftware extends javax.swing.JFrame {
+
+    //Creamos el entity Manager
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionBD");
+
+    //Creamos el entity Manager
+    EntityManager em = emf.createEntityManager();
 
     /**
      * Creates new form JframeElegirSoftware
@@ -38,7 +67,6 @@ public class JframeMenuSoftware extends javax.swing.JFrame {
         jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 350));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -127,16 +155,16 @@ public class JframeMenuSoftware extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 308, Short.MAX_VALUE)
+            .addComponent(jPanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministradorActionPerformed
-       JframeAdminIngreso j = new JframeAdminIngreso();
-       j.setVisible(true);
-       this.dispose();
+        JframeAdminIngreso j = new JframeAdminIngreso(em);
+        j.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonAdministradorActionPerformed
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
@@ -178,6 +206,22 @@ public class JframeMenuSoftware extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JframeMenuSoftware.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

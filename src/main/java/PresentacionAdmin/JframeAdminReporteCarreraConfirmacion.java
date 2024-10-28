@@ -7,6 +7,7 @@ package PresentacionAdmin;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author LABCISCO-PC059
  */
 public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
-
+    private EntityManager ema;
     private String filtrosAux = "";
     List<String> CarrerasAux = new ArrayList<>(); //Auxiliar para guardar filtros.
     private String aux1;
@@ -25,7 +26,7 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
      * Creates new form JframeElegirSoftware El contructo pide el numero de PC Y
      * las horas del apartado.
      */
-    public JframeAdminReporteCarreraConfirmacion(List<String> Carreras,Date fechaInicio,Date fechaFin) {
+    public JframeAdminReporteCarreraConfirmacion(List<String> Carreras,Date fechaInicio,Date fechaFin,EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.CarrerasAux = Carreras;
@@ -34,7 +35,7 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
         this.jLabelCarreraE.setText(CarrerasAux.toString());
         this.jLabelFechaInicioE.setText(this.fechaInicioAux.toString());
         this.jLabelFechaFinE.setText(this.fechaFinAux.toString());
-
+        this.ema=em;
     }
 
     /**
@@ -64,24 +65,19 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 400));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
-        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, 66));
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 90));
 
         jLabelDatosReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelDatosReporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDatosReporte.setText("Datos de Reporte");
-        jPanelFondo.add(jLabelDatosReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 184, -1));
 
         jButtonIngresar.setText("Aceptar");
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +85,6 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
                 jButtonIngresarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 99, -1));
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -97,40 +92,33 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 99, -1));
 
         jLabelCentroElegido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelCentroElegido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCentroElegido.setText("Centro");
         jLabelCentroElegido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabelCentroElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 184, 26));
 
         jLabelCentroComputo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCentroComputo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCentroComputo.setText("Centro de Computo");
-        jPanelFondo.add(jLabelCentroComputo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 184, -1));
 
         jLabelCarrera.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCarrera.setText("Carreras");
-        jPanelFondo.add(jLabelCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 184, -1));
 
         jLabelCarreraE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelCarreraE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCarreraE.setText("Carrera");
         jLabelCarreraE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabelCarreraE, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 184, 26));
 
         jLabelFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFin.setText("Fecha Fin");
-        jPanelFondo.add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 184, -1));
 
         jLabelFechaFinE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaFinE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFinE.setText("Fecha Fin");
         jLabelFechaFinE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabelFechaFinE, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 184, 26));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -145,18 +133,14 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
-
         jLabelFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicio.setText("Fecha Inicio");
-        jPanelFondo.add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 184, -1));
 
         jLabelFechaInicioE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaInicioE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicioE.setText("Fecha Inicio");
         jLabelFechaInicioE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabelFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 184, 26));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -171,7 +155,82 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 10));
+        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
+        jPanelFondo.setLayout(jPanelFondoLayout);
+        jPanelFondoLayout.setHorizontalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(300, 300, 300)
+                .addComponent(jLabelDatosReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jLabelTitulo))
+            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabelCentroComputo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabelCentroElegido, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabelFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabelCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabelCarreraE, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabelFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(jButtonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanelFondoLayout.setVerticalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabelDatosReporte))
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCentroComputo)
+                    .addComponent(jLabelFechaInicio))
+                .addGap(5, 5, 5)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCentroElegido, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCarrera)
+                    .addComponent(jLabelFechaFin))
+                .addGap(5, 5, 5)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCarreraE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(jButtonIngresar)
+                .addGap(7, 7, 7)
+                .addComponent(jButtonVolver))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,14 +247,14 @@ public class JframeAdminReporteCarreraConfirmacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminReporteCarreraFiltro j = new JframeAdminReporteCarreraFiltro();
+        JframeAdminReporteCarreraFiltro j = new JframeAdminReporteCarreraFiltro(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Reporte generado");
-        JframeAdminMenu j = new JframeAdminMenu();
+        JframeAdminMenu j = new JframeAdminMenu(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonIngresarActionPerformed

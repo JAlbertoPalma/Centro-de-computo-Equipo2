@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author LABCISCO-PC059
  */
 public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
-
+    private EntityManager ema;
     private String filtrosAux = "";
     private List<String> CarrerasAux = new ArrayList<>(); //Auxiliar para guardar filtros.
     private String aux1;
@@ -25,10 +26,11 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
     /**
      * Creates new form JframeElegirSoftware
      */
-    public JframeAdminReporteCarreraFiltro() {
+    public JframeAdminReporteCarreraFiltro(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
         CarrerasAux = new ArrayList<>(this.jComboBoxCarreras.getItemCount());
+        ema=em;
     }
 
     /**
@@ -59,15 +61,12 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
         jButtonAñadirCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(759, 450));
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
         jPanelFondo.setPreferredSize(new java.awt.Dimension(750, 450));
-        jPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +74,6 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
                 jButtonVolverActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 322, 81, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -90,22 +88,17 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 10));
-
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Instituto Tecnologico de Sonora");
-        jPanelFondo.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 50));
 
         jLabelFiltros1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFiltros1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFiltros1.setText("Selección de Filtros");
-        jPanelFondo.add(jLabelFiltros1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 220, -1));
 
         jLabelCarreras.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelCarreras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCarreras.setText("Carreras");
-        jPanelFondo.add(jLabelCarreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 126, 17));
 
         jComboBoxCarreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C 1", "C 2", "C 3", "C 4", " " }));
         jComboBoxCarreras.addItemListener(new java.awt.event.ItemListener() {
@@ -118,22 +111,18 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
                 jComboBoxCarrerasActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jComboBoxCarreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
         jLabelHorario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelHorario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHorario.setText("Horario");
-        jPanelFondo.add(jLabelHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 126, 17));
 
         jLabelFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaInicio.setText("Fecha Inicio");
-        jPanelFondo.add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 81, 17));
 
         jLabelFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFechaFin.setText("Fecha Fin");
-        jPanelFondo.add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 81, 17));
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -141,13 +130,9 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
                 jButtonAceptarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 293, 81, -1));
-        jPanelFondo.add(jTextFieldFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 81, -1));
-        jPanelFondo.add(jTextFieldFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 81, -1));
 
         jLabeFiltroSeleccionado2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabeFiltroSeleccionado2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelFondo.add(jLabeFiltroSeleccionado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 100, 71));
 
         jButtonLimpiar.setText("Restablecer Filtro");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +140,6 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
                 jButtonLimpiarActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         jButtonAñadirCarrera.setText("Añadir Filtro");
         jButtonAñadirCarrera.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +147,89 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
                 jButtonAñadirCarreraActionPerformed(evt);
             }
         });
-        jPanelFondo.add(jButtonAñadirCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 130, -1));
+
+        javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
+        jPanelFondo.setLayout(jPanelFondoLayout);
+        jPanelFondoLayout.setHorizontalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jLabelFiltros1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabelTitulo))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabelCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(jLabelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAñadirCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonLimpiar))
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jComboBoxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabeFiltroSeleccionado2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(90, 90, 90)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(332, 332, 332)
+                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGap(332, 332, 332)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanelFondoLayout.setVerticalGroup(
+            jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabelFiltros1))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonAñadirCarrera)
+                        .addGap(7, 7, 7)
+                        .addComponent(jButtonLimpiar))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addComponent(jComboBoxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabeFiltroSeleccionado2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFondoLayout.createSequentialGroup()
+                        .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addComponent(jButtonAceptar)
+                .addGap(6, 6, 6)
+                .addComponent(jButtonVolver))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,7 +246,7 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminMenu j = new JframeAdminMenu();
+        JframeAdminMenu j = new JframeAdminMenu(ema);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
@@ -200,7 +266,7 @@ public class JframeAdminReporteCarreraFiltro extends javax.swing.JFrame {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             this.fechaInicioAux = formato.parse(this.jTextFieldFechaInicio.getText());
             this.fechaFinAux = formato.parse(this.jTextFieldFechaFin.getText());
-            JframeAdminReporteCarreraConfirmacion j = new JframeAdminReporteCarreraConfirmacion(this.CarrerasAux, this.fechaInicioAux, this.fechaFinAux);
+            JframeAdminReporteCarreraConfirmacion j = new JframeAdminReporteCarreraConfirmacion(this.CarrerasAux, this.fechaInicioAux, this.fechaFinAux,ema);
             j.setVisible(true);
             this.dispose();
         } catch (Exception e) {
