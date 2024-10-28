@@ -5,30 +5,38 @@
 package persistencia;
 
 import dto.LaboratorioComputoDTO;
-import entidad.CarreraEntidad;
-import entidad.ComputadoraEntidad;
 import entidad.LaboratorioComputoEntidad;
 import entidad.UnidadAcademicaEntidad;
-import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import persistencia.interfaces.ILaboratorioComputoDAO;
 import persistencia.interfaces.IUnidadAcademicaDAO;
 
 /**
- *
+ * Representa la clase DAO que gestiona las operaciones
+ * del laboratorio de computo en la base de datos
  * @author Beto_
  */
 public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
     private EntityManager entityManager;
     private IUnidadAcademicaDAO unidadAcademicaDAO;
-
+    
+    /**
+     * Construye un LaboratorioComputoDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public LaboratorioComputoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.unidadAcademicaDAO = new UnidadAcademicaDAO(entityManager);
     }
     
+    /**
+     * persiste un laboratorio de computo con DTO y una unidad academica asociada
+     * @param laboratorioComputoDTO el DTO del laboratorio de computo
+     * @param id_unidadAcademica el id de la unidad academica
+     * @throws PersistenciaException si no se puede persistir
+     */
     @Override
     public void guardar(LaboratorioComputoDTO laboratorioComputoDTO, Long id_unidadAcademica) throws PersistenciaException {
         try{ 
@@ -53,7 +61,13 @@ public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Actualiza el laboratorio de computo con un DTO y su id
+     * @param id el id del laboratorio de computo
+     * @param laboratorioComputoDTO el DTO del laboratorio de computo
+     * @throws PersistenciaException si no se puede actualizar
+     */
     @Override
     public void actualizar(Long id, LaboratorioComputoDTO laboratorioComputoDTO) throws PersistenciaException {
         try{ 
@@ -74,7 +88,12 @@ public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
                 throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Se elimina un laboratorio de computo por su id
+     * @param id el id del laboratorio de computo
+     * @throws PersistenciaException si no se puede eliminar
+     */
     @Override
     public void eliminar(Long id) throws PersistenciaException {
         try{
@@ -91,7 +110,13 @@ public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Obtiene un laboratorio de computo entidad por su id
+     * @param id el id del laboratorio de computo
+     * @return el laboratorio de computo entidad
+     * @throws PersistenciaException si no se logra obtener
+     */
     @Override
     public LaboratorioComputoEntidad obtenerPorId(Long id) throws PersistenciaException {
         LaboratorioComputoEntidad laboratorioComputoBuscado = entityManager.find(LaboratorioComputoEntidad.class, id);
@@ -100,7 +125,12 @@ public class LaboratorioComputoDAO implements ILaboratorioComputoDAO{
         }
         return laboratorioComputoBuscado;
     }
-
+    
+    /**+
+     * Obtiene una lista de laboratorios de computo entidad
+     * @return una lista de laboratorios de computo entidad
+     * @throws PersistenciaException si la lista está vacía
+     */
     @Override
     public List<LaboratorioComputoEntidad> obtenerLaboratoriosComputo() throws PersistenciaException {
         List<LaboratorioComputoEntidad> laboratoriosComputo = entityManager.createQuery("SELECT e FROM LaboratorioComputoEntidad e", LaboratorioComputoEntidad.class)

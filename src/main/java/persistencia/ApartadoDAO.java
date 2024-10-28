@@ -11,28 +11,37 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import persistencia.interfaces.IApartadoDAO;
 import persistencia.interfaces.IComputadoraDAO;
 import persistencia.interfaces.IEstudianteDAO;
 
 /**
- *
+ * Representa la Clase DAO que gestiona las
+ * operaciones de los apartados en la base de datos
  * @author Beto_
  */
 public class ApartadoDAO implements IApartadoDAO{
-    @PersistenceContext
     private EntityManager entityManager;
     private IEstudianteDAO estudianteDAO;
     private IComputadoraDAO computadoraDAO;
 
-
+    /**
+     * Construye un apartadoDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public ApartadoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.estudianteDAO = new EstudianteDAO(entityManager);
         this.computadoraDAO = new ComputadoraDAO(entityManager);
     }
     
+    /**
+     * Realiza un apartado y asociación entre un estudiante y una computadora
+     * @param id_estudiante el id del estudiante
+     * @param id_computadora el id de la computadora
+     * @throws PersistenciaException Si no se logra realizar el apartado
+     */
     @Override
     public void apartar(Long id_estudiante, Long id_computadora) throws PersistenciaException {
         try{
@@ -63,6 +72,11 @@ public class ApartadoDAO implements IApartadoDAO{
         }
     }
     
+    /**
+     * Realiza un apartado, liberando la computadora y calculando los minutos de uso
+     * @param id el id del apartado
+     * @throws PersistenciaException Si no se logra desapartar
+     */
     @Override
     public void desapartar(Long id) throws PersistenciaException{
         try{
@@ -91,6 +105,11 @@ public class ApartadoDAO implements IApartadoDAO{
         }
     }
     
+    /**
+     * Actualiza la entidad con un nuevo apartadoEntidad
+     * @param apartadoEntidad el apartado con el cual actualizar
+     * @throws PersistenciaException si no se logra actualizar
+     */
     @Override
     public void actualizarEntidad(ApartadoEntidad apartadoEntidad) throws PersistenciaException{
         try{
@@ -99,7 +118,13 @@ public class ApartadoDAO implements IApartadoDAO{
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }
-
+    
+    /**
+     * Obtiene un apartado por su id
+     * @param id el id del apartado
+     * @return el objeto entidad del apartado
+     * @throws PersistenciaException si no se logra obtener por id
+     */
     @Override
     public ApartadoEntidad obtenerPorId(Long id) throws PersistenciaException {
         ApartadoEntidad apartadoBuscado = entityManager.find(ApartadoEntidad.class, id);
@@ -108,7 +133,12 @@ public class ApartadoDAO implements IApartadoDAO{
             }
         return apartadoBuscado;
     }
-
+    
+    /**
+     * Enlista los objetos entidad del apartado
+     * @return una lista tipo entidad del apartado
+     * @throws PersistenciaException si la lista está vacía
+     */
     @Override
     public List<ApartadoEntidad> obtenerApartados() throws PersistenciaException {
         List<ApartadoEntidad> apartados = entityManager.createQuery("SELECT e FROM ApartadoEntidad e", ApartadoEntidad.class)

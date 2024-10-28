@@ -100,14 +100,14 @@ public class testPersistencia {
 //            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //
-//        try {
-//            List<ComputadoraEntidad> computadoras = laboratorioComputoDAO.obtenerPorId(Long.valueOf("1")).getComputadoras();
-//            for (ComputadoraEntidad computadora : computadoras) {
-//                System.out.println("computadora: " + computadora.getNoMaquina() + " Estatus: " + computadora.getEstatus() + computadora.getDireccionIP());
-//            }
-//        } catch (PersistenciaException ex) {
-//            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            List<ComputadoraEntidad> computadoras = laboratorioComputoDAO.obtenerPorId(Long.valueOf("1")).getComputadoras();
+            for (ComputadoraEntidad computadora : computadoras) {
+                System.out.println("computadora: " + computadora.getNoMaquina() + " Estatus: " + computadora.getEstatus() + computadora.getDireccionIP());
+            }
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         //elimina: correcto
 //        try {
@@ -136,21 +136,21 @@ public class testPersistencia {
 //        }
         
         //bloquea: correcto
-        try{
-            bloqueoDAO.guardar(new BloqueoDTO("Ver paginas indebidas"));
-            bloqueoDAO.guardar(new BloqueoDTO("Jugar brawl stars"));
-            estudianteBloqueoDAO.bloquear(Long.valueOf("1"), Long.valueOf("1"));
-            estudianteBloqueoDAO.bloquear(Long.valueOf("2"), Long.valueOf("2"));
-        }catch(PersistenciaException pe){
-            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
-        }
+//        try{
+//            bloqueoDAO.guardar(new BloqueoDTO("Ver paginas indebidas"));
+//            bloqueoDAO.guardar(new BloqueoDTO("Jugar brawl stars"));
+//            estudianteBloqueoDAO.bloquear(Long.valueOf("1"), Long.valueOf("1"));
+//            estudianteBloqueoDAO.bloquear(Long.valueOf("2"), Long.valueOf("2"));
+//        }catch(PersistenciaException pe){
+//            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
+//        }
         
         //desbloquea: correcto
-        try{
-            estudianteBloqueoDAO.desbloquear(Long.valueOf("1"));
-        }catch(PersistenciaException pe){
-            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
-        }
+//        try{
+//            estudianteBloqueoDAO.desbloquear(Long.valueOf("1"));
+//        }catch(PersistenciaException pe){
+//            Logger.getLogger(testPersistencia.class.getName()).log(Level.SEVERE, null, pe);
+//        }
     
         //Enlista Entidades: correcto
 //        try{

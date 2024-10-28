@@ -5,21 +5,17 @@
 package persistencia;
 
 import dto.EstudianteDTO;
-import entidad.ApartadoEntidad;
 import entidad.CarreraEntidad;
-import entidad.ComputadoraEntidad;
 import entidad.EstudianteEntidad;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import persistencia.interfaces.IApartadoDAO;
-import persistencia.interfaces.IBloqueoDAO;
 import persistencia.interfaces.ICarreraDAO;
 import persistencia.interfaces.IComputadoraDAO;
 import persistencia.interfaces.IEstudianteDAO;
 
 /**
- *
+ * Representa la clase DAO que gestiona las operaciones
+ * del estudiante en la base de datos
  * @author Beto_
  */
 public class EstudianteDAO implements IEstudianteDAO{
@@ -27,12 +23,24 @@ public class EstudianteDAO implements IEstudianteDAO{
     private EntityManager entityManager;
     private ICarreraDAO carreraDAO;
     private IComputadoraDAO computadoraDAO;
-
+    
+    /**
+     * Construye un estudianteDAO con un entityManager
+     * inicializando los DAO de sus atributos con este mismo
+     * @param entityManager el entityManager
+     */
     public EstudianteDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.carreraDAO = new CarreraDAO(entityManager);
         this.computadoraDAO = new ComputadoraDAO(entityManager);
     }
+    
+    /**
+     * Persiste un estudiante con un DTO y una carrera a asociar
+     * @param estudianteDTO el DTO del estudiante
+     * @param id_carrera el id de la carrera
+     * @throws PersistenciaException si no se puede persistir
+     */
     @Override
     public void guardar(EstudianteDTO estudianteDTO, Long id_carrera) throws PersistenciaException{
         try{
@@ -54,6 +62,12 @@ public class EstudianteDAO implements IEstudianteDAO{
         }
     }
     
+    /**
+     * Actualiza el estudiante con un DTO y id
+     * @param id el id del estudiante
+     * @param estudianteDTO el DTO del estudiante
+     * @throws PersistenciaException si no se puede actualizar
+     */
     @Override //!
     public void actualizar(Long id, EstudianteDTO estudianteDTO) throws PersistenciaException{
         try{
@@ -75,6 +89,11 @@ public class EstudianteDAO implements IEstudianteDAO{
         }
     }
     
+    /**
+     * Actualiza la entidad con otra entidad
+     * @param estudianteEntidad la entidad para actualizar
+     * @throws PersistenciaException si no se puede actualizar la entidad
+     */
     @Override
     public void actualizarEntidad(EstudianteEntidad estudianteEntidad) throws PersistenciaException{
         try{
@@ -84,7 +103,12 @@ public class EstudianteDAO implements IEstudianteDAO{
             throw new PersistenciaException("No se pudo actualizar la entidad");
         }
     }
-
+    
+    /**
+     * Se elimina un estudiante por su id
+     * @param id el id del estudiante
+     * @throws PersistenciaException si no se logra eliminar
+     */
     @Override
     public void eliminar(Long id) throws PersistenciaException{
         try{
@@ -101,7 +125,13 @@ public class EstudianteDAO implements IEstudianteDAO{
             throw new PersistenciaException("Error: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Se obtiene un estudiante por su id
+     * @param id el id del estudiante
+     * @return un estudiante entidad
+     * @throws PersistenciaException si no se logra obtener
+     */
     @Override
     public EstudianteEntidad obtenerPorId(Long id) throws PersistenciaException{
         EstudianteEntidad estudianteBuscado = entityManager.find(EstudianteEntidad.class, id);
@@ -111,6 +141,11 @@ public class EstudianteDAO implements IEstudianteDAO{
         return estudianteBuscado;
     }
 
+    /**
+     * Obtiene la lista de estudiantes entidad
+     * @return la lista de estudiantes entidad
+     * @throws PersistenciaException si la lista esta vacía
+     */
     @Override
     public List<EstudianteEntidad> obtenerEstudiantes() throws PersistenciaException{
         List<EstudianteEntidad> estudiantes = entityManager.createQuery("SELECT e FROM EstudianteEntidad e", EstudianteEntidad.class)
@@ -119,8 +154,7 @@ public class EstudianteDAO implements IEstudianteDAO{
             throw new PersistenciaException("No hay estudiantes por mostrar");
         }
         return estudiantes;
-    }
-    
+    }  
     
 //    public List<EstudianteEntidad> obtenerEstudiantes(int pagina, int tamanioPagina, String ordenarPor) throws PersistenciaException {
 //        TypedQuery<EstudianteEntidad> query = entityManager.createQuery(

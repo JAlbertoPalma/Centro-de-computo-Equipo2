@@ -5,7 +5,7 @@
 package persistencia;
 
 /**
- *
+ * Representa la excepción de la capa de persistencia
  * @author Beto_
  */
 public class PersistenciaException extends Exception{
