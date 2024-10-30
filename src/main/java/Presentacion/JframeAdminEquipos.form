@@ -48,7 +48,6 @@
                   <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabelLogoItson" min="-2" pref="177" max="-2" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace min="260" pref="260" max="-2" attributes="0"/>
                   <Component id="jLabelFunciones" min="-2" pref="220" max="-2" attributes="0"/>
@@ -79,7 +78,6 @@
                           <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jLabelLogoItson" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabelFunciones" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -93,11 +91,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabelLogoItson">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-          </Properties>
-        </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

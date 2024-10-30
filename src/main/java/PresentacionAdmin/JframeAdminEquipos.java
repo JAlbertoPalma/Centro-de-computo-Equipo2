@@ -11,18 +11,14 @@ import javax.persistence.EntityManager;
  * @author LABCISCO-PC059
  */
 public class JframeAdminEquipos extends javax.swing.JFrame {
-<<<<<<< HEAD
-    
-=======
-private EntityManager ema;
->>>>>>> c79ece17ed3a7abe7e0d4d6e0a4350d2c136545e
+private EntityManager em;
     /**
      * Creates new form JframeElegirSoftware
      */
     public JframeAdminEquipos(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
-         this.ema=em;
+         this.em=em;
     }
 
     /**
@@ -35,7 +31,6 @@ private EntityManager ema;
     private void initComponents() {
 
         jPanelFondo = new javax.swing.JPanel();
-        jLabelLogoItson = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelFunciones = new javax.swing.JLabel();
@@ -46,13 +41,6 @@ private EntityManager ema;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
-
-        jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-<<<<<<< HEAD
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
-=======
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
->>>>>>> c79ece17ed3a7abe7e0d4d6e0a4350d2c136545e
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -106,7 +94,6 @@ private EntityManager ema;
         jPanelFondo.setLayout(jPanelFondoLayout);
         jPanelFondoLayout.setHorizontalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanelFondoLayout.createSequentialGroup()
                 .addGap(260, 260, 260)
                 .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -128,7 +115,6 @@ private EntityManager ema;
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFondoLayout.createSequentialGroup()
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,7 +159,7 @@ private EntityManager ema;
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminMenu j = new JframeAdminMenu(ema);
+        JframeAdminMenu j = new JframeAdminMenu(em);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
@@ -185,7 +171,6 @@ private EntityManager ema;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabelFunciones;
-    private javax.swing.JLabel jLabelLogoItson;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelFondo;

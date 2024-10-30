@@ -31,8 +31,8 @@ import persistencia.interfaces.IUnidadAcademicaDAO;
  */
 public class JframeAdminIngreso extends javax.swing.JFrame {
 
-    private EntityManager ema;
-    IEstudianteDAO estudianteDAO = new EstudianteDAO(ema);
+    private EntityManager em;
+    IEstudianteDAO estudianteDAO = new EstudianteDAO(em);
 
     /**
      * Creates new form JframeElegirSoftware
@@ -40,7 +40,7 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
     public JframeAdminIngreso(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
-        ema = em;
+        this.em = em;
     }
 
     /**
@@ -188,7 +188,7 @@ public class JframeAdminIngreso extends javax.swing.JFrame {
                     }
                 }
                 if (aux1 == true && aux2 == true) {
-                    JframeAdminMenu j = new JframeAdminMenu(ema);
+                    JframeAdminMenu j = new JframeAdminMenu(em);
                     j.setVisible(true);
                     this.dispose();
                 }

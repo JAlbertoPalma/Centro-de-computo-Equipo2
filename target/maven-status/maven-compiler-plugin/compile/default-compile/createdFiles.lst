@@ -14,6 +14,7 @@ PresentacionAdmin\JframeAdminEquipos.class
 PresentacionAdmin\JframeAdminReporteCentroComputoFiltro$4.class
 PresentacionEstudiante\JframeEstudianteElegirPC$5.class
 PresentacionAdmin\JframeAdminReporteBloqueosFiltro.class
+PresentacionCliente\JframePantallaBloqueoReservada$1.class
 PresentacionAdmin\JframeAdminMenu$3.class
 PresentacionEstudiante\JframeEstudianteIngreso$2.class
 entidad\ApartadoEntidad_.class
@@ -31,6 +32,7 @@ persistencia\CarreraDAO.class
 negocio\convertidores\SoftwareInstaladoCVR.class
 Presentacion\JframeAdminReportes$1.class
 PresentacionAdmin\JframeAdminMenu.class
+PresentacionCliente\JframePantallaBloqueoReservada$2.class
 Presentacion\JframeAdminMenu$1.class
 Presentacion\JframeAdminMenu.class
 PresentacionAdmin\JframeAdminEliminarEquipos$1.class
@@ -141,9 +143,11 @@ persistencia\interfaces\ICarreraDAO.class
 Presentacion\JframeEstudianteElegirPC$11.class
 PresentacionEstudiante\JframeEstudianteElegirPC$11.class
 PresentacionAdmin\JframeAdminReporteCarreraFiltro$5.class
+PresentacionCliente\JframePantallaBloqueo.class
 negocio\convertidores\UnidadAcademicaCVR.class
 PresentacionEstudiante\JframeEstudianteElegirPC$17.class
 negocio\interfaces\IComputadoraNegocio.class
+PresentacionCliente\JframePantallaBloqueo$1.class
 PresentacionEstudiante\JframeEstudianteElegirPC$2.class
 PresentacionAdmin\JframeAdminReporteCentroComputoFiltro$2.class
 entidad\EstudianteEntidad_.class
@@ -216,6 +220,7 @@ negocio\SoftwareInstaladoNegocio.class
 PresentacionEstudiante\JframeEstudianteElegirPC$23.class
 entidad\EstudianteBloqueoEntidad.class
 Presentacion\JframeAdminEquipos$3.class
+PresentacionCliente\JframePantallaBloqueoReservada.class
 PresentacionEstudiante\JframeEstudianteIngreso.class
 PresentacionEstudiante\JframeEstudiantePCApartada$1.class
 Presentacion\JframeAdminReporteCentroComputo$2.class

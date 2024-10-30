@@ -16,6 +16,7 @@ C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\jav
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\entidad\CarreraEntidad.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\negocio\convertidores\UnidadAcademicaCVR.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IBloqueoDAO.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\PresentacionCliente\JframePantallaBloqueoReservada.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\PresentacionEstudiante\JframeEstudianteIngreso.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\dto\SoftwareInstaladoDTO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IApartadoDAO.java
@@ -47,6 +48,7 @@ C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\jav
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\negocio\interfaces\ICarreraNegocio.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\PresentacionAdmin\JframeMenuSoftware.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\Presentacion\JframeAdminReporteCentroComputo.java
+C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\PresentacionCliente\JframePantallaBloqueo.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\interfaces\IEstudianteDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\persistencia\UnidadAcademicaDAO.java
 C:\Users\Beto_\OneDrive\Documentos\NetBeansProjects\CentroComputoE2\src\main\java\PresentacionAdmin\JframeAdminReportes.java

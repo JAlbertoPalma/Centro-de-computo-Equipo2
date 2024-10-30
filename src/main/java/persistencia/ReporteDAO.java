@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.swing.text.Document;
 import persistencia.interfaces.IReporteDAO;
 
 /**
@@ -134,8 +133,8 @@ public class ReporteDAO implements IReporteDAO{
      * @throws PersistenciaException si no se puede crear el reporte
      */
     @Override
-    public void reporteCarreras(LocalDate fechaInicio, LocalDate fechaFin, List<Long> ids_carreras) throws PersistenciaException {
-              try{
+    public void reporteCarreras(LocalDate fechaInicio, LocalDate fechaFin, List<Long> idsCarreras) throws PersistenciaException {
+        try{
             // Crear un documento PDF
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("reporte_carreras.pdf"));

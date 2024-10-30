@@ -30,7 +30,6 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelFondo = new javax.swing.JPanel();
-        jLabelLogoItson = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelFunciones = new javax.swing.JLabel();
@@ -41,8 +40,6 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
-
-        jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,7 +97,6 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
                 .addGap(210, 210, 210)
                 .addComponent(jLabelTitulo))
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanelFondoLayout.createSequentialGroup()
                 .addGap(260, 260, 260)
                 .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,8 +119,7 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jLabelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButtonAñadir)
@@ -173,7 +168,6 @@ public class JframeAdminEquipos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabelFunciones;
-    private javax.swing.JLabel jLabelLogoItson;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelFondo;

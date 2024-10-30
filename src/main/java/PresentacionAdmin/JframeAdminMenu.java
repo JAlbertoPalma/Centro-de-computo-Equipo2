@@ -11,14 +11,14 @@ import javax.persistence.EntityManager;
  * @author LABCISCO-PC059
  */
 public class JframeAdminMenu extends javax.swing.JFrame {
-private EntityManager ema;
+private EntityManager em;
     /**
      * Creates new form JframeElegirSoftware
      */
     public JframeAdminMenu(EntityManager em) {
         initComponents();
         this.setLocationRelativeTo(null);
-        ema = em;
+        this.em = em;
     }
 
     /**
@@ -31,7 +31,6 @@ private EntityManager ema;
     private void initComponents() {
 
         jPanelFondo = new javax.swing.JPanel();
-        jLabelLogoItson = new javax.swing.JLabel();
         jButtonAdminEquipos = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
         jButtonGenerarReportes = new javax.swing.JButton();
@@ -44,13 +43,6 @@ private EntityManager ema;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelFondo.setBackground(new java.awt.Color(153, 204, 255));
-
-        jLabelLogoItson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-<<<<<<< HEAD
-        jPanelFondo.add(jLabelLogoItson, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 177, 100));
-=======
-        jLabelLogoItson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoITSON.png"))); // NOI18N
->>>>>>> c79ece17ed3a7abe7e0d4d6e0a4350d2c136545e
 
         jButtonAdminEquipos.setBackground(new java.awt.Color(0, 102, 255));
         jButtonAdminEquipos.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,8 +114,7 @@ private EntityManager ema;
         jPanelFondoLayout.setHorizontalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(210, 210, 210)
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTitulo)
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
@@ -148,7 +139,6 @@ private EntityManager ema;
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFondoLayout.createSequentialGroup()
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelLogoItson, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,6 +152,7 @@ private EntityManager ema;
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
                 .addComponent(jLabelFunciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButtonAdminEquipos)
@@ -189,19 +180,19 @@ private EntityManager ema;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminIngreso j = new JframeAdminIngreso(ema);
+        JframeAdminIngreso j = new JframeAdminIngreso(em);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonAdminEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdminEquiposActionPerformed
-        JframeAdminEquipos j = new JframeAdminEquipos(ema);
+        JframeAdminEquipos j = new JframeAdminEquipos(em);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAdminEquiposActionPerformed
 
     private void jButtonGenerarReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReportesActionPerformed
-        JframeAdminReportes j = new JframeAdminReportes(ema);
+        JframeAdminReportes j = new JframeAdminReportes(em);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonGenerarReportesActionPerformed
@@ -214,7 +205,6 @@ private EntityManager ema;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabelFunciones;
     private javax.swing.JLabel jLabelFunciones1;
-    private javax.swing.JLabel jLabelLogoItson;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

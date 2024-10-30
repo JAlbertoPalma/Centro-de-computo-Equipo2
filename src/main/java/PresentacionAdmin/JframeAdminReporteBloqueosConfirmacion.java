@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author LABCISCO-PC059
  */
 public class JframeAdminReporteBloqueosConfirmacion extends javax.swing.JFrame {
-private EntityManager ema;
+private EntityManager em;
     private Date fechaInicioAux;
     private Date fechaFinAux;
 
@@ -30,7 +30,7 @@ private EntityManager ema;
         this.fechaFinAux = fechaFin;
         this.jLabelFechaInicioE.setText(this.fechaInicioAux.toString());
         this.jLabelFechaFinE.setText(this.fechaFinAux.toString());
-         this.ema=em;
+        this.em=em;
     }
 
     /**
@@ -186,14 +186,14 @@ private EntityManager ema;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        JframeAdminReporteBloqueosFiltro j = new JframeAdminReporteBloqueosFiltro(ema);
+        JframeAdminReporteBloqueosFiltro j = new JframeAdminReporteBloqueosFiltro(em);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Reporte generado");
-        JframeAdminMenu j = new JframeAdminMenu(ema);
+        JframeAdminMenu j = new JframeAdminMenu(em);
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonIngresarActionPerformed
